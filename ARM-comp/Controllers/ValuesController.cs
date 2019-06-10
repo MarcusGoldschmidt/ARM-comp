@@ -1,6 +1,7 @@
 ﻿using ARM_comp.Helpers.NotEval;
 using ARM_comp.Models;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace ARM_comp.Controllers
 {
@@ -17,11 +18,11 @@ namespace ARM_comp.Controllers
 
         // POST api/values
         [HttpPost]
-        public DataCell Post([FromForm] ZeroFuncao value)
+        public string Post([FromForm] ZeroFuncao value)
         {
-            DataCell cell = new DataCell(value.Funcao);
+            var cell = new DataCell(value.Funcao);
             
-            return cell;
+            return JsonConvert.SerializeObject(cell);
         }
     }
 }

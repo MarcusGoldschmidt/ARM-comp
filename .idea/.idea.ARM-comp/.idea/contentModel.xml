@@ -7,7 +7,6 @@
     <e p="$USER_HOME$/.Rider2019.1/system/resharper-host/local/Transient/ReSharperHost/v191/SolutionCaches/_ARM-comp.854346339.00" t="ExcludeRecursive" />
     <e p="$PROJECT_DIR$" t="IncludeFlat">
       <e p="ARM-comp" t="IncludeRecursive">
-        <e p=".gitignore" t="Include" />
         <e p="ARM-comp.csproj" t="IncludeRecursive" />
         <e p="Controllers" t="Include">
           <e p="ValuesController.cs" t="Include" />
@@ -17,6 +16,7 @@
             <e p="DataCell.cs" t="Include" />
             <e p="Expression.cs" t="Include" />
             <e p="Token.cs" t="Include" />
+            <e p="TokenList.cs" t="Include" />
           </e>
         </e>
         <e p="Models" t="Include">
