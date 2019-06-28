@@ -35,15 +35,17 @@ namespace ARM_comp.Helpers.NotEval
                     if (data[j] == '(')
                         insideBlock++;
 
+                    if (data[j] != ')' && insideBlock == 0) break;
+
                     if (data[j] != ')') continue;
                     insideBlock--;
                     if (j == data.Length - 1)
                     {
-                        return data.Substring(1,data.Length - 2);
+                        return data.Substring(1, data.Length - 2);
                     }
-
                 }
             }
+
             return data;
         }
 
@@ -53,32 +55,35 @@ namespace ARM_comp.Helpers.NotEval
             Tokens = new List<string>();
             for (var i = 0; i < data.Length; i++)
             {
-                // Identifica um bloco com ()
+                // Identifica um bloco
+                var aux = "";
+
                 if (data[i] == '(')
                 {
-                    var point = i;
-                    var insideBlock = 0;
+                    var inside = 1;
 
-                    for (var j = i; j < data.Length; j++)
+                    for (var j = 0; j < data.Substring(i, data.Length - i).Length; j++)
                     {
-                        point++;
-                        if (data[j] == '(')
-                            insideBlock++;
-
-                        if (data[j] == ')')
-                            insideBlock--;
-
-                        if (insideBlock == 0)
-                            break;
+                        aux += data[j + i].ToString();
+                        if (data[j + i] == '(')
+                            inside++;
+                        if (data[j + i] == ')')
+                            inside--;
+                        if (inside != 1) continue;
+                        i = j + i;
+                        break;
                     }
-
-                    Tokens.Add(data.Substring(i, point - i));
-                    Tokens.Add(data.Substring(point,1));
-                    i = point;
-                    continue;
+                }
+                else if (Valid.IsDecimal(data[i].ToString()))
+                {
+                    aux = data[i].ToString();
+                }
+                else
+                {
+                    aux = data[i].ToString();
                 }
 
-                Tokens.Add(data.Substring(i,1));
+                Tokens.Add(aux);
             }
         }
 
