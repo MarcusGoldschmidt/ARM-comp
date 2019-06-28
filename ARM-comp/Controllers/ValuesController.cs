@@ -20,9 +20,8 @@ namespace ARM_comp.Controllers
         [HttpPost]
         public string Post([FromForm] ZeroFuncao value)
         {
-            var cell = new DataCell(value.Funcao);
-            
-            return JsonConvert.SerializeObject(cell);
+            var node = new Node(value.Funcao);
+            return JsonConvert.SerializeObject(node);
         }
     }
 }
