@@ -29,9 +29,9 @@ namespace ARM_comp.Helpers.NotEval
             return PreferenceOperators.Any(VARIABLE => VARIABLE == data);
         }
         
-        public bool IsDecimal(string data)
+        public bool IsDecimal(char data)
         {
-            return Decimal.Any(VARIABLE => VARIABLE == data);
+            return Decimal.Any(number => number == data.ToString());
         }
     }
 }
