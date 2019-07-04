@@ -18,10 +18,10 @@ namespace ARM_comp.Controllers
 
         // POST api/values
         [HttpPost]
-        public string Post([FromForm] ZeroFuncao value)
+        public double Post([FromForm] ZeroFuncao value)
         {
             var node = new Node(value.Funcao);
-            return JsonConvert.SerializeObject(node);
+            return node.Calcular(value.A);
         }
     }
 }

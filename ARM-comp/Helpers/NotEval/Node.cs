@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace ARM_comp.Helpers.NotEval
@@ -166,6 +167,47 @@ namespace ARM_comp.Helpers.NotEval
                 Left = new Node(data[0]);
                 Right = new Node(data[2]);
             }
+        }
+
+        public double Calcular(double value)
+        {
+            // Terminal
+            if (Left == null && Right == null)
+            {
+                if (Value == "x")
+                {
+                    return value;
+                }
+                else
+                {
+                    return Convert.ToDouble(Value);
+                }
+            }
+            
+            // Funcoes normais
+            if (Right != null && Left != null)
+            {
+                switch (Value)
+                {
+                    case "+":
+                        return Left.Calcular(value) + Right.Calcular(value);
+                    case "-":
+                        return Left.Calcular(value) - Right.Calcular(value);
+                    case "*":
+                        return Left.Calcular(value) * Right.Calcular(value);
+                    case "/":
+                        return Left.Calcular(value) / Right.Calcular(value);
+                    case "^":
+                        return Math.Pow(Left.Calcular(value),Right.Calcular(value));
+                }
+            }
+            
+            // Funcoes trigonometrica
+            if (Right != null)
+            {
+            }
+
+            return value;
         }
     }
 }
