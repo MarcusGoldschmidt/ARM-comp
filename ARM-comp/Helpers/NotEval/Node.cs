@@ -12,7 +12,7 @@ namespace ARM_comp.Helpers.NotEval
             generate(tokens);
         }
 
-        protected string Expression { set; get; }
+        private string Expression { set; get; }
 
         public string Value { set; get; }
 
@@ -20,7 +20,7 @@ namespace ARM_comp.Helpers.NotEval
 
         public Node Right { set; get; }
 
-        protected string FormataString(string data)
+        private string FormataString(string data)
         {
             return data.Replace(" ", "");
         }
@@ -154,7 +154,7 @@ namespace ARM_comp.Helpers.NotEval
             return data.Substring(0, i);
         }
 
-        private void generate(List<string> data)
+        private void generate(IReadOnlyList<string> data)
         {
             if (data.Count == 1)
             {
