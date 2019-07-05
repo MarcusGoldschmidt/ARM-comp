@@ -74,6 +74,7 @@ namespace ARM_comp.Helpers.NotEval
                     }
                     else
                     {
+                        // TODO: Calcular se é alguma funcao trigonometrica
                         tokens.Add(data[i].ToString());
                     }
                 }
@@ -81,7 +82,7 @@ namespace ARM_comp.Helpers.NotEval
 
             return tokens;
         }
-        
+
         protected List<string> AjustePrioridade(List<string> lexemas)
         {
             var newList = new List<string>();
@@ -95,7 +96,7 @@ namespace ARM_comp.Helpers.NotEval
             // Procura prioridade
             for (var i = 1; i < lexemas.Count; i++)
             {
-                if (tokenList.IsPrecedenceOperators(lexemas[i]))
+                if (tokenList.IsSpecialPreferenceOperators(lexemas[i]))
                 {
                     var bloco = $"{lexemas[i - 1]}{lexemas[i]}{lexemas[i + 1]}";
                     lexemas[i - 1] = bloco;
@@ -103,7 +104,19 @@ namespace ARM_comp.Helpers.NotEval
                     lexemas.RemoveAt(i);
                 }
             }
-            
+
+            // Procura prioridade
+            for (var i = 1; i < lexemas.Count; i++)
+            {
+                if (tokenList.IsPrecedenceOperators(lexemas[i]) && lexemas.Count > 3)
+                {
+                    var bloco = $"{lexemas[i - 1]}{lexemas[i]}{lexemas[i + 1]}";
+                    lexemas[i - 1] = bloco;
+                    lexemas.RemoveAt(i);
+                    lexemas.RemoveAt(i);
+                }
+            }
+
             newList.Add(lexemas[0]);
             newList.Add(lexemas[1]);
             var aux = "";
@@ -111,7 +124,7 @@ namespace ARM_comp.Helpers.NotEval
             {
                 aux += lexemas[i];
             }
-            
+
             newList.Add(aux);
 
             return newList;
@@ -175,15 +188,13 @@ namespace ARM_comp.Helpers.NotEval
             if (Left == null && Right == null)
             {
                 if (Value == "x")
-                {
                     return value;
-                }
-                else
-                {
-                    return Convert.ToDouble(Value);
-                }
+                if (Value == "e")
+                    return Math.E;
+
+                return Convert.ToDouble(Value);
             }
-            
+
             // Funcoes normais
             if (Right != null && Left != null)
             {
@@ -198,10 +209,10 @@ namespace ARM_comp.Helpers.NotEval
                     case "/":
                         return Left.Calcular(value) / Right.Calcular(value);
                     case "^":
-                        return Math.Pow(Left.Calcular(value),Right.Calcular(value));
+                        return Math.Pow(Left.Calcular(value), Right.Calcular(value));
                 }
             }
-            
+
             // Funcoes trigonometrica
             if (Right != null)
             {
