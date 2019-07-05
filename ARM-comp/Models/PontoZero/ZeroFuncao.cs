@@ -12,14 +12,14 @@ namespace ARM_comp.Models.PontoZero
             switch (args.Length)
             {
                 case 2:
-                    ponto.X = args[0];
-                    ponto.Y = args[1];
+                    ponto.A = args[0];
+                    ponto.B = args[1];
                     break;
                 case 4:
-                    ponto.X = args[0];
-                    ponto.Y = args[1];
-                    ponto2.X = args[2];
-                    ponto2.Y = args[3];
+                    ponto.A = args[0];
+                    ponto.B = args[1];
+                    ponto2.A = args[2];
+                    ponto2.B = args[3];
                     break;
                 default:
                     throw new Exception("Mande apenas 2 pontos");
@@ -48,20 +48,20 @@ namespace ARM_comp.Models.PontoZero
         public double presicao { set; get; }
 
         [Required]
-        public PontoCartesiano ponto { set; get; }
+        public Ponto ponto { set; get; }
         
-        public PontoCartesiano ponto2 { set; get; }
+        public Ponto ponto2 { set; get; }
 
         private MathExpression _math { set; get; }
 
-        private bool ZeroNoIntervalo(PontoCartesiano date)
+        private bool ZeroNoIntervalo(Ponto date)
         {
-            return _math.F(date.X) * _math.F(date.Y) < 0;
+            return _math.F(date.A) * _math.F(date.B) <= 0;
         }
 
         public double Bissecao()
         {
-            return _math.F(ponto.X);
+            return _math.F(ponto.A);
         }
     }
 }

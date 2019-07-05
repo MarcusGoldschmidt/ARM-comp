@@ -1,9 +1,11 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace ARM_comp.Models
 {
-    public class PontoCartesiano
+    public class Ponto
     {
-        public double X { get; set; }
+        [Required] public double A { get; set; }
 
-        public double Y { get; set; }
+        [Required] public double B { get; set; }
     }
 }
