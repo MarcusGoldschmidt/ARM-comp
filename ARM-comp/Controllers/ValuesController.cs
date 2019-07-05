@@ -2,8 +2,10 @@
 using ARM_comp.Helpers.NotEval;
 using ARM_comp.Models;
 using ARM_comp.Models.PontoZero;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using NUnit.Framework;
 
 namespace ARM_comp.Controllers
 {
@@ -20,17 +22,10 @@ namespace ARM_comp.Controllers
 
         // POST api/values
         [HttpPost]
-        public string Post([FromBody] ZeroFuncaoDto value)
+        public ActionResult<string> Post([FromBody] ZeroFuncaoDto value)
         {
-            try
-            {
-                var aux = new ZeroFuncao(value);
-                return aux.Bissecao().ToString();
-            }
-            catch (Exception e)
-            {
-                return e.Message;
-            }
+            var aux = new ZeroFuncao(value);
+            return aux.Bissecao().ToString();
         }
     }
 }

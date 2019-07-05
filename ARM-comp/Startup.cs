@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Net;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 
 namespace ARM_comp
 {
@@ -31,7 +29,7 @@ namespace ARM_comp
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
+            if (!env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
@@ -39,6 +37,28 @@ namespace ARM_comp
             {
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
+
+                app.UseExceptionHandler(builder =>
+                {
+                    builder.Run(async context =>
+                    {
+                        var exceptionHandlerFeature = context.Features.Get<IExceptionHandlerFeature>();
+
+                        if (exceptionHandlerFeature != null)
+                        {
+                            context.Response.StatusCode = (int) HttpStatusCode.InternalServerError;
+                            context.Response.ContentType = "application/json";
+
+                            var json = new
+                            {
+                                context.Response.StatusCode,
+                                exceptionHandlerFeature.Error.Message
+                            };
+
+                            await context.Response.WriteAsync(JsonConvert.SerializeObject(json));
+                        }
+                    });
+                });
             }
 
             app.UseHttpsRedirection();
