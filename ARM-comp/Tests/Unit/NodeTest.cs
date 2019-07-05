@@ -42,6 +42,13 @@ namespace ARM_comp.Tests.Unit
             "(x+x)",
             "+",
             "100")]
+        // Casos de funcoes trigonometricas
+        [TestCase("sen(x)",
+            "x")]
+        [TestCase("sen(x) + x",
+            "sen(x)",
+            "+",
+            "x")]
         public void LexicoTest(string actual,params string[] expected)
         {
             Assert.AreEqual(expected.ToList(), Lexico(actual));
@@ -115,10 +122,18 @@ namespace ARM_comp.Tests.Unit
             new object[] {"x","*","x","+","(x+x)"},
             new object[] {"x*x","+","(x+x)"}
         )]
+        // Precedencia de Potenciação
+        [TestCase(
+            new object[] {"x","*","x","^","x"},
+            new object[] {"x","*","x^x"}
+        )]
+        [TestCase(
+            new object[] {"x","+","x","^","x"},
+            new object[] {"x","+","x^x"}
+        )]
         public void AjustePrioridadeTest(object[] actual, object[] expected)
         {
             var lista = actual.Select(data => data.ToString()).ToList();
-            
             Assert.AreEqual(expected.ToList(), AjustePrioridade(lista));
         }
     }
