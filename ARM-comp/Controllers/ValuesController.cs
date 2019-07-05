@@ -1,5 +1,7 @@
-﻿using ARM_comp.Helpers.NotEval;
+﻿using System;
+using ARM_comp.Helpers.NotEval;
 using ARM_comp.Models;
+using ARM_comp.Models.PontoZero;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -18,10 +20,17 @@ namespace ARM_comp.Controllers
 
         // POST api/values
         [HttpPost]
-        public double Post([FromForm] ZeroFuncao value)
+        public string Post([FromBody] ZeroFuncaoDto value)
         {
-            var node = new Node(value.Funcao);
-            return node.Calcular(value.A);
+            try
+            {
+                var aux = new ZeroFuncao(value);
+                return aux.Bissecao().ToString();
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
     }
 }
