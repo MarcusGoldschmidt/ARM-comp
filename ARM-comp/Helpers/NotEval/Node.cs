@@ -213,7 +213,10 @@ namespace ARM_comp.Helpers.NotEval
                     case "*":
                         return Left.Calcular(value) * Right.Calcular(value);
                     case "/":
-                        return Left.Calcular(value) / Right.Calcular(value);
+                        var aux = Left.Calcular(value) / Right.Calcular(value);
+                        if (double.IsNaN(aux) || double.IsInfinity(aux))
+                            throw new DivideByZeroException();
+                        return aux;
                     case "^":
                         return Math.Pow(Left.Calcular(value), Right.Calcular(value));
                 }
