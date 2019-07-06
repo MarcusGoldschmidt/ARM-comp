@@ -1,11 +1,5 @@
-﻿using System;
-using ARM_comp.Helpers.NotEval;
-using ARM_comp.Models;
-using ARM_comp.Models.PontoZero;
-using Microsoft.AspNetCore.Http;
+﻿using ARM_comp.Models.PontoZero;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using NUnit.Framework;
 
 namespace ARM_comp.Controllers
 {

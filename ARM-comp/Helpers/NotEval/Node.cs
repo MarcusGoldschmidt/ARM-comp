@@ -92,6 +92,10 @@ namespace ARM_comp.Helpers.NotEval
             {
                 return lexemas;
             }
+            
+            // TODO: Essa parte tem que arrumar para cada novo operador de prioridade maior tem que
+            // Colocar um for aumentado com o if da confição
+            // Então fixme
 
             // Procura prioridade
             for (var i = 1; i < lexemas.Count; i++)
@@ -154,7 +158,6 @@ namespace ARM_comp.Helpers.NotEval
         protected string BlocoDecimal(string data)
         {
             var TokenList = new TokenList();
-            var aux = "";
             var i = 0;
             while (TokenList.IsDecimal(data[i]))
             {
@@ -187,12 +190,15 @@ namespace ARM_comp.Helpers.NotEval
             // Terminal
             if (Left == null && Right == null)
             {
-                if (Value == "x")
-                    return value;
-                if (Value == "e")
-                    return Math.E;
-
-                return Convert.ToDouble(Value);
+                switch (Value)
+                {
+                    case "x":
+                        return value;
+                    case "e":
+                        return Math.E;
+                    default:
+                        return Convert.ToDouble(Value); 
+                }
             }
 
             // Funcoes normais

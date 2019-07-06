@@ -13,10 +13,11 @@ namespace ARM_comp.Helpers.NotEval
 
         public double F(double x)
         {
+            // TODO: Colocar essa exception no node
             var aux = _node.Calcular(x);
             if (double.IsNaN(aux) || double.IsInfinity(aux))
             {
-                throw new Exception("Divisão por zero!");
+                throw new DivideByZeroException();
             }
             return _node.Calcular(x);
         }
