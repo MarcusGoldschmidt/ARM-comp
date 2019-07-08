@@ -1,11 +1,10 @@
-using System.Collections.Generic;
 using System.Linq;
 using ARM_comp.Helpers.NotEval;
 using NUnit.Framework;
 
 namespace ARM_comp.Tests.Unit
 {
-    [TestFixture("x + x")]
+    [TestFixture("x")]
     public class NodeTest : Node
     {
 
@@ -44,8 +43,8 @@ namespace ARM_comp.Tests.Unit
             "100")]
         // Casos de funcoes trigonometricas
         [TestCase("sen(x)",
-            "x")]
-        [TestCase("sen(x) + x",
+            "sen(x)")]
+        [TestCase("sen(x)+x",
             "sen(x)",
             "+",
             "x")]
@@ -67,6 +66,17 @@ namespace ARM_comp.Tests.Unit
         public void BlocoDecimalTest(string expected, string actual)
         {
             Assert.AreEqual(expected, BlocoDecimal(actual));
+        }
+        
+        
+            
+        [TestCase("sen(x)",
+            "sen(x)")]
+        [TestCase("sen(x)+x",
+            "sen(x)")]
+        public void BlocoFuncaoTest(string actual, string expected)
+        {
+            Assert.AreEqual(expected, BlocoFuncao(actual));
         }
         
         [TestCase(

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ARM_comp.Helpers.NotEval
@@ -45,6 +46,26 @@ namespace ARM_comp.Helpers.NotEval
         public static bool IsDecimal(char data)
         {
             return Decimal.Any(number => number == data.ToString());
+        }
+        
+        public static bool IsLetterAndNotX(char data)
+        {
+            if (data >= 99 && data <= 124 && data != 'x')
+            {
+                return true;
+            }
+
+            return false;
+        }
+        
+        public static List<char> Ascii()
+        {
+            var Ascii = new List<char>();
+            for (var i = 0; i < 255; i++)
+            {
+                Ascii.Add((char) i);
+            }
+            return Ascii;
         }
     }
 }

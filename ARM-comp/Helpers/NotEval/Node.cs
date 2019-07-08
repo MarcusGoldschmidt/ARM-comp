@@ -71,8 +71,17 @@ namespace ARM_comp.Helpers.NotEval
                     }
                     else
                     {
-                        // TODO: Calcular se é alguma funcao trigonometrica
-                        tokens.Add(data[i].ToString());
+                        if (TokenList.IsLetterAndNotX(data[i]))
+                        {
+                            var aux = BlocoFuncao(data.Substring(i));
+                            tokens.Add(aux);
+                            i += aux.Length - 1;
+                        }
+                        else
+                        {
+                            // TODO: Calcular se é alguma funcao trigonometrica
+                            tokens.Add(data[i].ToString());
+                        }
                     }
                 }
             }
@@ -84,11 +93,28 @@ namespace ARM_comp.Helpers.NotEval
         {
             var newList = new List<string>();
 
+            // Funcao Trigonometrica
+            // Primeira letra do primeiro lexema
+            if (lexemas.Count == 1 && TokenList.IsLetterAndNotX(lexemas[0][0]))
+            {
+                var interator = 0;
+                while (TokenList.IsLetterAndNotX(lexemas[0][interator]))
+                {
+                    interator++;
+                }
+
+                newList.Add(lexemas[0].Substring(0, interator));
+                var blocoInterno = lexemas[0].Substring(interator);
+                newList.Add(blocoInterno.Substring(1, blocoInterno.Length - 2));
+
+                return newList;
+            }
+
             if (lexemas.Count == 3 || lexemas.Count == 1)
             {
                 return lexemas;
             }
-            
+
             // TODO: Essa parte tem que arrumar para cada novo operador de prioridade maior tem que
             // Colocar um for aumentado com o if da confição
             // Então fixme
@@ -166,11 +192,44 @@ namespace ARM_comp.Helpers.NotEval
             return data.Substring(0, i);
         }
 
+        protected string BlocoFuncao(string data)
+        {
+            var aux = 0;
+            while (TokenList.IsLetterAndNotX(data[aux]))
+            {
+                aux++;
+            }
+
+            var block = 0;
+            for (var i = aux; i < data.Length; i++)
+            {
+                if (data[i] == '(')
+                    block++;
+
+                if (data[i] == ')')
+                    block--;
+
+                if (block == 0)
+                {
+                    block = i;
+                    break;
+                }
+            }
+
+            var let = data.Substring(0, block + 1);
+            return let;
+        }
+
         private void generate(IReadOnlyList<string> data)
         {
             if (data.Count == 1)
             {
                 Value = data[0];
+            }
+            else if (data.Count == 2)
+            {
+                Value = data[0];
+                Right = new Node(data[1]);
             }
             else
             {
@@ -192,7 +251,7 @@ namespace ARM_comp.Helpers.NotEval
                     case "e":
                         return Math.E;
                     default:
-                        return Convert.ToDouble(Value); 
+                        return Convert.ToDouble(Value);
                 }
             }
 
