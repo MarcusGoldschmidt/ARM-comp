@@ -2,29 +2,29 @@ using System.Linq;
 
 namespace ARM_comp.Helpers.NotEval
 {
-    public class TokenList
+    public static class TokenList
     {
-        private readonly string[] Operators = {
+        private static readonly string[] Operators = {
             "+", "-", "*", "/", "^"
         };
 
-        private readonly string[] NormalOperators = {
+        private static readonly string[] NormalOperators = {
             "+", "-"
         };
 
-        private readonly string[] PreferenceOperators = {
+        private static readonly string[] PreferenceOperators = {
             "*", "/"
         };
 
-        private readonly string[] SpecialPreferenceOperators = {
+        private static readonly string[] SpecialPreferenceOperators = {
             "^"
         };
 
-        private readonly string[] Decimal = {
+        private static readonly string[] Decimal = {
             "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "."
         };
 
-        private readonly string[] SpecialFunctions = {
+        private static readonly string[] SpecialFunctions = {
             "sen","cos","tan",
             "arcsen","arccos","arctan",
             "cotan","sec","cosec",
@@ -32,17 +32,17 @@ namespace ARM_comp.Helpers.NotEval
             "log","sqrt"
         };
 
-        public bool IsPrecedenceOperators(string data)
+        public static bool IsPrecedenceOperators(string data)
         {
             return PreferenceOperators.Any(VARIABLE => VARIABLE == data);
         }
 
-        public bool IsSpecialPreferenceOperators(string data)
+        public static bool IsSpecialPreferenceOperators(string data)
         {
             return SpecialPreferenceOperators.Any(VARIABLE => VARIABLE == data);
         }
 
-        public bool IsDecimal(char data)
+        public static bool IsDecimal(char data)
         {
             return Decimal.Any(number => number == data.ToString());
         }

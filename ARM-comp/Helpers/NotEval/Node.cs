@@ -29,12 +29,10 @@ namespace ARM_comp.Helpers.NotEval
         protected string RemovePareteses(string data)
         {
             if (data[0] != '(') return data;
-            var point = 0;
             var insideBlock = 0;
 
             for (var j = 0; j < data.Length; j++)
             {
-                point++;
                 if (data[j] == '(')
                     insideBlock++;
 
@@ -53,7 +51,6 @@ namespace ARM_comp.Helpers.NotEval
 
         protected List<string> Lexico(string data)
         {
-            var TokenList = new TokenList();
             var tokens = new List<string>();
 
             for (var i = 0; i < data.Length; i++)
@@ -86,7 +83,6 @@ namespace ARM_comp.Helpers.NotEval
         protected List<string> AjustePrioridade(List<string> lexemas)
         {
             var newList = new List<string>();
-            var tokenList = new TokenList();
 
             if (lexemas.Count == 3 || lexemas.Count == 1)
             {
@@ -100,7 +96,7 @@ namespace ARM_comp.Helpers.NotEval
             // Procura prioridade
             for (var i = 1; i < lexemas.Count; i++)
             {
-                if (tokenList.IsSpecialPreferenceOperators(lexemas[i]))
+                if (TokenList.IsSpecialPreferenceOperators(lexemas[i]))
                 {
                     var bloco = $"{lexemas[i - 1]}{lexemas[i]}{lexemas[i + 1]}";
                     lexemas[i - 1] = bloco;
@@ -112,7 +108,7 @@ namespace ARM_comp.Helpers.NotEval
             // Procura prioridade
             for (var i = 1; i < lexemas.Count; i++)
             {
-                if (tokenList.IsPrecedenceOperators(lexemas[i]) && lexemas.Count > 3)
+                if (TokenList.IsPrecedenceOperators(lexemas[i]) && lexemas.Count > 3)
                 {
                     var bloco = $"{lexemas[i - 1]}{lexemas[i]}{lexemas[i + 1]}";
                     lexemas[i - 1] = bloco;
@@ -157,7 +153,6 @@ namespace ARM_comp.Helpers.NotEval
 
         protected string BlocoDecimal(string data)
         {
-            var TokenList = new TokenList();
             var i = 0;
             while (TokenList.IsDecimal(data[i]))
             {
