@@ -87,6 +87,18 @@ namespace ARM_comp.Tests.Unit
             new object[] {"x ^ 3","3"},
             27
         )]
+        [TestCase(
+            new object[] {"(x ^ 2) ^ 2","2"},
+            16
+        )]
+        [TestCase(
+            new object[] {"x ^ 2 ^ 2","2"},
+            16
+        )]
+        [TestCase(
+            new object[] {"x ^ (1 + 1)","2"},
+            4
+        )]
         public void CriacaoMathExpressionTest(object[] actual, double expected)
         {
             var aux = new MathExpression(actual[0].ToString());
