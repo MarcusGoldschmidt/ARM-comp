@@ -1,5 +1,6 @@
 ﻿using ARM_comp.Models.PontoZero;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace ARM_comp.Controllers
 {
@@ -19,7 +20,8 @@ namespace ARM_comp.Controllers
         public ActionResult<string> Post([FromBody] ZeroFuncaoDto value)
         {
             var aux = new ZeroFuncao(value);
-            return aux.Bissecao().ToString();
+            //return aux.Bissecao().ToString();
+            return JsonConvert.SerializeObject(aux);
         }
     }
 }
