@@ -103,6 +103,14 @@ namespace ARM_comp.Tests.Unit
             new object[] {"100-50","2"},
             50
         )]
+        [TestCase(
+            new object[] {"50*-1","2"},
+            -50
+        )]
+        [TestCase(
+            new object[] {"-1","2"},
+            -1
+        )]
         public void CriacaoMathExpressionTest(object[] actual, double expected)
         {
             var aux = new MathExpression(actual[0].ToString());

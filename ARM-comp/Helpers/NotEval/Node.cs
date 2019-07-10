@@ -119,6 +119,14 @@ namespace ARM_comp.Helpers.NotEval
 
                 return newList;
             }
+            
+            // Quando valor é negativo
+            if (lexemas.Count == 2 && lexemas[0] == "-")
+            {
+                var retoro = $"{lexemas[0]}{lexemas[1]}";
+                newList.Add(retoro);
+                return newList;
+            }
 
             if (lexemas.Count == 3 || lexemas.Count == 1)
             {
