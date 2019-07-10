@@ -1,11 +1,10 @@
-﻿using ARM_comp.Helpers.NotEval;
-using ARM_comp.Models.PontoZero;
+﻿using ARM_comp.Models.PontoZero;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
 namespace ARM_comp.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/funcao-zera")]
     [ApiController]
     public class ValuesController : ControllerBase
     {
@@ -19,10 +18,10 @@ namespace ARM_comp.Controllers
         }
         
         // POST api/values
-        [HttpPost("test")]
-        public ActionResult<string> Test([FromBody] ZeroFuncaoDto value)
+        [HttpPost("bissecao")]
+        public ActionResult<double> Test([FromBody] ZeroFuncaoDto value)
         {
-            return JsonConvert.SerializeObject(new Node(value.funcao));
+            return new ZeroFuncao(value).Bissecao();
         }
     }
 }

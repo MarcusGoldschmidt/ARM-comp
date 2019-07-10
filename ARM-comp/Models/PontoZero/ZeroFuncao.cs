@@ -39,8 +39,28 @@ namespace ARM_comp.Models.PontoZero
         }
 
         public double Bissecao()
-        {
-            return _math.F(ponto.A);
+        {  
+            double x;
+            double fx;
+            
+            do
+            {
+                x = (ponto.A + ponto.B) / 2;
+
+                fx = _math.F(x);
+
+                if (_math.F(ponto.A) < 0 & fx < 0)
+                {
+                    ponto.A = x;
+                }
+                else
+                {
+                    ponto.B = x;
+                }
+
+            } while (Math.Abs(fx) >= presicao);
+
+            return x;
         }
     }
 }
