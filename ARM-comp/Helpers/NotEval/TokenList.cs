@@ -50,7 +50,7 @@ namespace ARM_comp.Helpers.NotEval
         
         public static bool IsLetterAndNotX(char data)
         {
-            if (data >= 99 && data <= 124 && data != 'x')
+            if (data >= 97 && data <= 122 && data != 'x')
             {
                 return true;
             }

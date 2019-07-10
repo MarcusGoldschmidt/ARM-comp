@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ARM_comp.Helpers.NotEval
 {
@@ -8,6 +9,7 @@ namespace ARM_comp.Helpers.NotEval
         public Node(string data)
         {
             Expression = RemovePareteses(FormataString(data));
+            ValidacaoString(Expression);
             var tokens = Lexico(Expression);
             tokens = AjustePrioridade(tokens);
             generate(tokens);
@@ -190,6 +192,19 @@ namespace ARM_comp.Helpers.NotEval
             }
 
             return data.Substring(0, i);
+        }
+
+        private void ValidacaoString(string data)
+        {
+            if (data.Any(e => e == '(' || e == ')'))
+            {
+                var abriu = data.Count(e => e == '(');
+                var fechou = data.Count(e => e == ')');
+                if (abriu - fechou != 0)
+                {
+                    throw new Exception("Formatação errada");
+                }
+            }
         }
 
         protected string BlocoFuncao(string data)
