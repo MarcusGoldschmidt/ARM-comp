@@ -1,8 +1,8 @@
 # Trabalho de metodos computacionais
 
-### EndPoints
+## EndPoints
 
-**Bissecção**
+### Bissecção
 
 Exemplo de estrada
 
