@@ -13,15 +13,25 @@ namespace ARM_comp.Controllers
         [HttpPost]
         public ActionResult<string> Post([FromBody] ZeroFuncaoDto value)
         {
-            return JsonConvert.SerializeObject(new Node(value.funcao));
+            return JsonConvert.SerializeObject(new Node(value.Funcao));
         }
         
         [HttpPost("bissecao")]
-        public ActionResult<string> Test([FromBody] ZeroFuncaoDto value)
+        public ActionResult<string> Bissecao([FromBody] ZeroFuncaoDto value)
         {
             var json = new
             {
                 result = new ZeroFuncao(value).Bissecao()
+            };
+            return JsonConvert.SerializeObject(json);
+        }
+        
+        [HttpPost("posicao-falsa")]
+        public ActionResult<string> PosicaoFalsa([FromBody] ZeroFuncaoDto value)
+        {
+            var json = new
+            {
+                result = new ZeroFuncao(value).PosicaoFalsa()
             };
             return JsonConvert.SerializeObject(json);
         }

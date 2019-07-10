@@ -1,14 +1,14 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace ARM_comp.Models.PontoZero
 {
     public class ZeroFuncaoDto
     {
-        public string funcao { set; get; }
+        public string Funcao { set; get; }
         
-        public double presicao { set; get; }
-        public Ponto ponto { set; get; }
+        public string DerivadaFuncao { set; get; }
         
-        public Ponto ponto2 { set; get; }
+        public double Presicao { set; get; }
+        public Ponto Ponto { set; get; }
+        
+        public Ponto Ponto2 { set; get; }
     }
 }

@@ -10,8 +10,8 @@ Exemplo de estrada
 
 ```
 {
-	"funcao": "x^2 - x",
-	"ponto": {
+	"Funcao": "x^2 - x",
+	"Ponto": {
 		"A": 2,
 		"B": 0
 	}
@@ -22,12 +22,12 @@ Exemplo de estrada
 
 ```
 {
-	"funcao": "x^2 - x",
-	"ponto": {
+	"Funcao": "x^2 - x",
+	"Ponto": {
 		"A": 2,
 		"B": 0
 	},
-	"ponto2": {
+	"Ponto2": {
 		"A": 2,
 		"B": 0
 	}

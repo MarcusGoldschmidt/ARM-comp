@@ -8,28 +8,28 @@ namespace ARM_comp.Models.PontoZero
     {
         public ZeroFuncao(ZeroFuncaoDto data)
         {
-            funcao = data.funcao;
+            Funcao = data.Funcao;
+            DerivadaFuncao = data.DerivadaFuncao;
             
-            _math = new MathExpression(funcao);
-            if (!ZeroNoIntervalo(data.ponto))
-            {
+            _math = new MathExpression(Funcao);
+            if (!ZeroNoIntervalo(data.Ponto))
                 throw new Exception("Zero não está contido no intervalo");
-            }
-
-            presicao = data.presicao != 0 ? data.presicao : 0.001;
-            ponto = data.ponto;
-            ponto2 = data.ponto2;
+            Presicao = data.Presicao != 0 ? data.Presicao : 0.001;
+            Ponto = data.Ponto;
+            Ponto2 = data.Ponto2;
         }
         
         [Required]
-        public string funcao { set; get; }
+        public string Funcao { set; get; }
         
-        public double presicao { set; get; }
+        public string DerivadaFuncao { set; get; }
+        
+        public double Presicao { set; get; }
 
         [Required]
-        public Ponto ponto { set; get; }
+        public Ponto Ponto { set; get; }
         
-        public Ponto ponto2 { set; get; }
+        public Ponto Ponto2 { set; get; }
 
         private MathExpression _math { set; get; }
 
@@ -45,20 +45,48 @@ namespace ARM_comp.Models.PontoZero
             
             do
             {
-                x = (ponto.A + ponto.B) / 2;
+                x = (Ponto.A + Ponto.B) / 2;
 
                 fx = _math.F(x);
 
-                if (_math.F(ponto.A) < 0 & fx < 0)
+                if (_math.F(Ponto.A) < 0 & fx < 0)
                 {
-                    ponto.A = x;
+                    Ponto.A = x;
                 }
                 else
                 {
-                    ponto.B = x;
+                    Ponto.B = x;
                 }
 
-            } while (Math.Abs(fx) >= presicao);
+            } while (Math.Abs(fx) >= Presicao);
+
+            return x;
+        }
+
+        public double PosicaoFalsa()
+        {
+            double x;
+            double fx;
+            
+            do
+            {
+                var fa = _math.F(Ponto.A);
+                var fb = _math.F(Ponto.B);
+                
+                x = (Ponto.A * fb - Ponto.B * fa) / (fb - fa);
+
+                fx = _math.F(x);
+
+                if (_math.F(Ponto.A) < 0 & fx < 0)
+                {
+                    Ponto.A = x;
+                }
+                else
+                {
+                    Ponto.B = x;
+                }
+
+            } while (Math.Abs(fx) >= Presicao);
 
             return x;
         }
