@@ -1,4 +1,5 @@
-﻿using ARM_comp.Models.PontoZero;
+﻿using ARM_comp.Helpers.NotEval;
+using ARM_comp.Models.PontoZero;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -8,20 +9,21 @@ namespace ARM_comp.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        // POST api/values
+        // GET Metodo para brincar e ver a arvore que vai gerar
         [HttpPost]
         public ActionResult<string> Post([FromBody] ZeroFuncaoDto value)
         {
-            var aux = new ZeroFuncao(value);
-            //return aux.Bissecao().ToString();
-            return JsonConvert.SerializeObject(aux);
+            return JsonConvert.SerializeObject(new Node(value.funcao));
         }
         
-        // POST api/values
         [HttpPost("bissecao")]
-        public ActionResult<double> Test([FromBody] ZeroFuncaoDto value)
+        public ActionResult<string> Test([FromBody] ZeroFuncaoDto value)
         {
-            return new ZeroFuncao(value).Bissecao();
+            var json = new
+            {
+                result = new ZeroFuncao(value).Bissecao()
+            };
+            return JsonConvert.SerializeObject(json);
         }
     }
 }
