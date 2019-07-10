@@ -44,4 +44,8 @@
       <DeployManifest Remove="obj\Debug\netcoreapp2.2\ARM-comp.application" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Models\Interpolacao" />
+    </ItemGroup>
+
 </Project>
