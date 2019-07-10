@@ -32,6 +32,11 @@ namespace ARM_comp.Helpers.NotEval
             "arccotan","arcsec","arccosec",
             "log","sqrt"
         };
+        
+        public static bool IsOperators(string data)
+        {
+            return Operators.Any(VARIABLE => VARIABLE == data);
+        }
 
         public static bool IsPrecedenceOperators(string data)
         {

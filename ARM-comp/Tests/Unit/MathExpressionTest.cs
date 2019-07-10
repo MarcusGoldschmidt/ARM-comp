@@ -99,6 +99,10 @@ namespace ARM_comp.Tests.Unit
             new object[] {"x ^ (1 + 1)","2"},
             4
         )]
+        [TestCase(
+            new object[] {"100-50","2"},
+            50
+        )]
         public void CriacaoMathExpressionTest(object[] actual, double expected)
         {
             var aux = new MathExpression(actual[0].ToString());

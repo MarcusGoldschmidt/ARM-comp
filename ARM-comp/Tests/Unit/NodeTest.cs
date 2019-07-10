@@ -48,6 +48,14 @@ namespace ARM_comp.Tests.Unit
             "sen(x)",
             "+",
             "x")]
+        [TestCase("x*-1",
+            "x",
+            "*",
+            "-1")]
+        [TestCase("x*-1.5",
+            "x",
+            "*",
+            "-1.5")]
         public void LexicoTest(string actual,params string[] expected)
         {
             Assert.AreEqual(expected.ToList(), Lexico(actual));

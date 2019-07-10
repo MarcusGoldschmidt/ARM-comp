@@ -81,8 +81,16 @@ namespace ARM_comp.Helpers.NotEval
                         }
                         else
                         {
-                            // TODO: Calcular se é alguma funcao trigonometrica
+                            // TODO: Verificar quando o valor é negativo
                             tokens.Add(data[i].ToString());
+                            if (TokenList.IsOperators(data[i].ToString()) 
+                                && data[i + 1] == '-')
+                            {
+                                var aux = data[++i].ToString();
+                                aux = $"{aux}{BlocoDecimal(data.Substring(i+1))}";
+                                tokens.Add(aux);
+                                i += aux.Length - 1;
+                            }
                         }
                     }
                 }
@@ -190,7 +198,6 @@ namespace ARM_comp.Helpers.NotEval
                     break;
                 }
             }
-
             return data.Substring(0, i);
         }
 
