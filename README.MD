@@ -35,9 +35,13 @@ Exemplo de estrada
 ```
 
 **Para exibir a arvore montada**
+
 Method: POST
+
 `api/funcao-zera`
 
 **Calculando usando bissecao**
+
 Method: POST
+
 `api/funcao-zera/bissecao`
