@@ -11,13 +11,13 @@ namespace ARM_comp.Models.PontoZero
             Funcao = data.Funcao;
             DerivadaFuncao = data.DerivadaFuncao;
             X = data.X;
+            X2 = data.X2;
             
             _math = new MathExpression(Funcao);
             if (!ZeroNoIntervalo(data.Ponto))
                 throw new Exception("Zero não está contido no intervalo");
             Precisao = data.Precisao != 0 ? data.Precisao : 0.001;
             Ponto = data.Ponto;
-            Ponto2 = data.Ponto2;
         }
         
         [Required]
@@ -26,6 +26,8 @@ namespace ARM_comp.Models.PontoZero
         public string DerivadaFuncao { set; get; }
         
         public double X { set; get; }
+        
+        public double X2 { set; get; }
         
         public double Precisao { set; get; }
 
@@ -111,6 +113,32 @@ namespace ARM_comp.Models.PontoZero
                 x -= _math.F(x) / funcaoLinha.F(x);
 
                 fx = _math.F(x);
+            } while (Math.Abs(fx) >= Precisao);
+            
+            return x;
+        }
+        
+        public double NewtonRaphsonDerivadaSimulada()
+        {  
+            if (X2 == null)
+                throw new Exception("Segundo ponto é necessário");
+            
+            var x1 = X;
+            var x2 = X2;
+            double x;
+            double fx;
+            
+            do
+            {
+                var fx1 = _math.F(x1);
+                var fx2 = _math.F(x2);
+                
+                x = (x2 * fx1 - x1 * fx2) / (fx1 - fx2);
+                
+                x2 = x1;
+                x1 = x;
+                
+                fx = _math.F(x1);
             } while (Math.Abs(fx) >= Precisao);
             
             return x;

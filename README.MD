@@ -89,14 +89,8 @@ Method: POST
 ```
 {
 	"Funcao": "x^2 - x",
-	"Ponto": {
-		"A": 2,
-		"B": 0
-	},
-	"Ponto2": {
-		"A": 2,
-		"B": 0
-	},
+	"X": 5
+	"X2": 7
 	"Precisao": 0.01
 }
 ```

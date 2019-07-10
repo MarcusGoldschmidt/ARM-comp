@@ -45,5 +45,15 @@ namespace ARM_comp.Controllers
             };
             return JsonConvert.SerializeObject(json);
         }
+        
+        [HttpPost("newton/derivada")]
+        public ActionResult<string> NewtonRaphsonDerivadaSimulada([FromBody] ZeroFuncaoDto value)
+        {
+            var json = new
+            {
+                result = new ZeroFuncao(value).NewtonRaphsonDerivadaSimulada()
+            };
+            return JsonConvert.SerializeObject(json);
+        }
     }
 }
