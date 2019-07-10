@@ -2,11 +2,11 @@
 
 ### EndPoints
 
-**Bissecção
+**Bissecção**
 
 Exemplo de estrada
 
-**Para um ponto
+**Para um ponto**
 
 ```
 {
@@ -18,7 +18,7 @@ Exemplo de estrada
 }
 ```
 
-**Para dois pontos
+**Para dois pontos**
 
 ```
 {
@@ -34,10 +34,10 @@ Exemplo de estrada
 }
 ```
 
-Para exibir a arvore montada
+**Para exibir a arvore montada**
 
 `api/funcao-zera`
 
-Calculando usando bissecao
+**Calculando usando bissecao**
 
 `api/funcao-zera/bissecao`
