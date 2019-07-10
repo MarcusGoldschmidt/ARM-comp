@@ -35,5 +35,15 @@ namespace ARM_comp.Controllers
             };
             return JsonConvert.SerializeObject(json);
         }
+        
+        [HttpPost("newton")]
+        public ActionResult<string> NewtonRaphson([FromBody] ZeroFuncaoDto value)
+        {
+            var json = new
+            {
+                result = new ZeroFuncao(value).NewtonRaphson()
+            };
+            return JsonConvert.SerializeObject(json);
+        }
     }
 }
