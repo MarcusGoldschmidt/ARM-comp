@@ -28,9 +28,7 @@ namespace ARM_comp.Helpers.NotEval
         private static readonly string[] SpecialFunctions = {
             "sen","cos","tan",
             "arcsen","arccos","arctan",
-            "cotan","sec","cosec",
-            "arccotan","arcsec","arccosec",
-            "log","sqrt"
+            "ln","sqrt"
         };
         
         public static bool IsOperators(string data)

@@ -269,7 +269,7 @@ namespace ARM_comp.Helpers.NotEval
             }
         }
 
-        public double Calcular(double value)
+        public double Calcular(double number)
         {
             // Terminal
             if (Left == null && Right == null)
@@ -277,7 +277,7 @@ namespace ARM_comp.Helpers.NotEval
                 switch (Value)
                 {
                     case "x":
-                        return value;
+                        return number;
                     case "e":
                         return Math.E;
                     default:
@@ -291,27 +291,48 @@ namespace ARM_comp.Helpers.NotEval
                 switch (Value)
                 {
                     case "+":
-                        return Left.Calcular(value) + Right.Calcular(value);
+                        return Left.Calcular(number) + Right.Calcular(number);
                     case "-":
-                        return Left.Calcular(value) - Right.Calcular(value);
+                        return Left.Calcular(number) - Right.Calcular(number);
                     case "*":
-                        return Left.Calcular(value) * Right.Calcular(value);
+                        return Left.Calcular(number) * Right.Calcular(number);
                     case "/":
-                        var aux = Left.Calcular(value) / Right.Calcular(value);
+                        var aux = Left.Calcular(number) / Right.Calcular(number);
                         if (double.IsNaN(aux) || double.IsInfinity(aux))
                             throw new DivideByZeroException();
                         return aux;
                     case "^":
-                        return Math.Pow(Left.Calcular(value), Right.Calcular(value));
+                        return Math.Pow(Left.Calcular(number), Right.Calcular(number));
                 }
             }
 
             // Funcoes trigonometrica
             if (Right != null)
             {
+                switch (Value)
+                {
+                    case "sen":
+                        return Math.Sin(Right.Calcular(number));
+                    case "cos":
+                        return Math.Cos(Right.Calcular(number));
+                    case "tan":
+                        return Math.Tan(Right.Calcular(number));
+                    case "arcsen":
+                        return Math.Asin(Right.Calcular(number));
+                    case "arccos":
+                        return Math.Acos(Right.Calcular(number));
+                    case "arctan":
+                        return Math.Atan(Right.Calcular(number));
+                    case "ln":
+                        return Math.Log10(Right.Calcular(number));
+                    case "sqrt":
+                        return Math.Sqrt(Right.Calcular(number));
+                    default:
+                        throw new Exception("Função não reconhecida: " + Value);
+                }
             }
 
-            return value;
+            return number;
         }
     }
 }
