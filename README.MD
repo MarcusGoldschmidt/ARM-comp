@@ -1,8 +1,6 @@
 # Trabalho de metodos computacionais
 
-## EndPoints
-
-### Bissecção
+## Bissecção
 
 Exemplo de estrada
 
@@ -125,5 +123,22 @@ Method: POST
 	"X": 5
 	"X2": 7
 	"Precisao": 0.01
+}
+```
+
+## Interpolação
+
+**Calculando usando Lagrange**
+
+Method: POST
+
+`api/interpolacao/lagrange`
+
+```
+{
+	Pontos: [
+	    {x,y},
+	    {x,y}
+	]
 }
 ```
