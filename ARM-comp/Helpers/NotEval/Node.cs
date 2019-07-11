@@ -57,6 +57,15 @@ namespace ARM_comp.Helpers.NotEval
 
             for (var i = 0; i < data.Length; i++)
             {
+                // Gambiarra
+                if (i == 0 && data[i] == '-')
+                {
+                    var aux = "-"+BlocoDecimal(data.Substring(i+1));
+                    tokens.Add(aux);
+                    i += aux.Length - 1;
+                    continue;
+                }
+
                 if (data[i] == '(')
                 {
                     var aux = BlocoParenteses(data.Substring(i));
@@ -83,11 +92,11 @@ namespace ARM_comp.Helpers.NotEval
                         {
                             // TODO: Verificar quando o valor é negativo
                             tokens.Add(data[i].ToString());
-                            if (TokenList.IsOperators(data[i].ToString()) 
+                            if (TokenList.IsOperators(data[i].ToString())
                                 && data[i + 1] == '-')
                             {
                                 var aux = data[++i].ToString();
-                                aux = $"{aux}{BlocoDecimal(data.Substring(i+1))}";
+                                aux = $"{aux}{BlocoDecimal(data.Substring(i + 1))}";
                                 tokens.Add(aux);
                                 i += aux.Length - 1;
                             }
@@ -119,7 +128,7 @@ namespace ARM_comp.Helpers.NotEval
 
                 return newList;
             }
-            
+
             // Quando valor é negativo
             if (lexemas.Count == 2 && lexemas[0] == "-")
             {
@@ -206,6 +215,7 @@ namespace ARM_comp.Helpers.NotEval
                     break;
                 }
             }
+
             return data.Substring(0, i);
         }
 

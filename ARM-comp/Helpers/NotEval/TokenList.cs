@@ -22,7 +22,7 @@ namespace ARM_comp.Helpers.NotEval
         };
 
         private static readonly string[] Decimal = {
-            "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "."
+            "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ".",","
         };
 
         private static readonly string[] SpecialFunctions = {

@@ -11,7 +11,7 @@ namespace ARM_comp.Helpers
         
         public Polinomial(double[] data)
         {
-            for (var i = 0; i < data.Length - 1; i++)
+            for (var i = 0; i < data.Length; i++)
                 Polinomio.Add(i, data[i]);
         }
 
