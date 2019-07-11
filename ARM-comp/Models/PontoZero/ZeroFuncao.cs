@@ -14,8 +14,6 @@ namespace ARM_comp.Models.PontoZero
             X2 = data.X2;
             
             _math = new MathExpression(Funcao);
-            if (!ZeroNoIntervalo(data.Ponto))
-                throw new Exception("Zero não está contido no intervalo");
             Precisao = data.Precisao != 0 ? data.Precisao : 0.001;
             Ponto = data.Ponto;
         }
@@ -47,6 +45,12 @@ namespace ARM_comp.Models.PontoZero
         {  
             double x;
             double fx;
+
+            if (Ponto == null)
+                throw new Exception("Intervalo não informado");
+            
+            if (!ZeroNoIntervalo(Ponto))
+                throw new Exception("Zero não está contido no intervalo");
             
             do
             {
@@ -72,6 +76,15 @@ namespace ARM_comp.Models.PontoZero
         {
             double x;
             double fx;
+            
+            if (Ponto == null)
+                throw new Exception("Intervalo não informado");
+            
+            if (Ponto2 == null)
+                throw new Exception("Segundo intervalo não informado");
+            
+            if (!ZeroNoIntervalo(Ponto))
+                throw new Exception("Zero não está contido no intervalo");
             
             do
             {
