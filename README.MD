@@ -89,7 +89,7 @@ Method: POST
 }
 ```
 
-**Calculando usando posição false**
+**Calculando usando posição falsa**
 
 Method: POST
 
@@ -147,8 +147,14 @@ Method: POST
 ```
 {
 	Pontos: [
-	    {x,y},
-	    {x,y}
+		{
+			"x": 0,
+			"y": 5
+		},
+		{
+			"x": 0,
+			"y": 5
+		},
 	]
 }
 ```
