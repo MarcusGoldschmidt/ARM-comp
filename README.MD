@@ -2,6 +2,19 @@
 
 ## Bissecção
 
+**Calculando função genérica**
+
+Method: POST
+
+`api/math`
+
+```
+{
+	"Funcao": "x^2 - x",
+	"X": 5
+}
+```
+
 Exemplo de estrada
 
 Por padrão a precição é de 0.001, mas pode ser alterada colocando um valor.
