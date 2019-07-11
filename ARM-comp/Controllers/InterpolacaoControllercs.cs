@@ -12,9 +12,12 @@ namespace ARM_comp.Controllers
         [HttpPost("lagrange")]
         public ActionResult<string> Bissecao([FromBody] LagrangeDto value)
         {
+            
+            var lagrange = new Lagrange(value);
+            
             var json = new
             {
-                result = new Lagrange(value).Interpolacao()
+                result = lagrange.Interpolacao()
             };
             return JsonConvert.SerializeObject(json);
         }

@@ -32,12 +32,12 @@ namespace ARM_comp.Models.Interpolacao.Metodos
             var potencia = polinomial.Polinomio.Keys.Reverse().ToList();
             var valor = polinomial.Polinomio.Values.Reverse().ToList();
 
-            for (var i = 0; i < valor.Count - 1; i++)
+            for (var i = 0; i < valor.Count; i++)
             {
                 if (i == valor.Count - 1)
-                    retorno += $"({valor[i]}x^{potencia[i]})";
+                    retorno += $"({valor[i]}*x^{potencia[i]})";
                 else
-                    retorno += $"({valor[i]}x^{potencia[i]}) +";
+                    retorno += $"({valor[i]}*x^{potencia[i]}) + ";
             }
 
             return retorno;
@@ -46,7 +46,6 @@ namespace ARM_comp.Models.Interpolacao.Metodos
         private Polinomial ProdutorioL(int j)
         {
             Polinomial polinomial;
-            ;
 
             // Caso especial para iniciação do polinomio
             // K == 1
@@ -61,6 +60,7 @@ namespace ARM_comp.Models.Interpolacao.Metodos
             }
             else
             {
+                // Quando é o primeiro
                 // K = 1
                 polinomial = new Polinomial(new[]
                 {
@@ -70,7 +70,7 @@ namespace ARM_comp.Models.Interpolacao.Metodos
                 polinomial.Multiplicar(1 / (Pontos[j].x - Pontos[1].x));
             }
 
-            for (var i = 1; i < K - 1; i++)
+            for (var i = 1; i < K; i++)
             {
                 if (i == j)
                     continue;
