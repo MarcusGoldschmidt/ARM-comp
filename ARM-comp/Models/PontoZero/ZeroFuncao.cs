@@ -51,6 +51,8 @@ namespace ARM_comp.Models.PontoZero
             
             if (!ZeroNoIntervalo(Ponto))
                 throw new Exception("Zero não está contido no intervalo");
+
+            var validador = 0;
             
             do
             {
@@ -58,7 +60,7 @@ namespace ARM_comp.Models.PontoZero
 
                 fx = _math.F(x);
 
-                if (_math.F(Ponto.A) < 0 & fx < 0)
+                if (_math.F(Ponto.A) < 0 && fx < 0)
                 {
                     Ponto.A = x;
                 }
@@ -66,7 +68,9 @@ namespace ARM_comp.Models.PontoZero
                 {
                     Ponto.B = x;
                 }
-
+                validador++;
+                if (validador > short.MaxValue * 100)
+                    throw new Exception("Não conseguimos encontrar o valor. Tente outro método");
             } while (Math.Abs(fx) >= Precisao);
 
             return x;
@@ -79,13 +83,11 @@ namespace ARM_comp.Models.PontoZero
             
             if (Ponto == null)
                 throw new Exception("Intervalo não informado");
-            
-            if (Ponto2 == null)
-                throw new Exception("Segundo intervalo não informado");
-            
+
             if (!ZeroNoIntervalo(Ponto))
                 throw new Exception("Zero não está contido no intervalo");
-            
+
+            var validador = 0;
             do
             {
                 var fa = _math.F(Ponto.A);
@@ -95,7 +97,7 @@ namespace ARM_comp.Models.PontoZero
 
                 fx = _math.F(x);
 
-                if (_math.F(Ponto.A) < 0 & fx < 0)
+                if (_math.F(Ponto.A) < 0 && fx < 0)
                 {
                     Ponto.A = x;
                 }
@@ -103,6 +105,9 @@ namespace ARM_comp.Models.PontoZero
                 {
                     Ponto.B = x;
                 }
+                validador++;
+                if (validador > short.MaxValue * 1000)
+                    throw new Exception("Não conseguimos encontrar o valor");
 
             } while (Math.Abs(fx) >= Precisao);
 
@@ -120,12 +125,18 @@ namespace ARM_comp.Models.PontoZero
             var funcaoLinha = new MathExpression(DerivadaFuncao);
             var x = X;
             double fx;
-            
+
+            var validador = 0;
+
             do
             {
                 x -= _math.F(x) / funcaoLinha.F(x);
 
                 fx = _math.F(x);
+                
+                validador++;
+                if (validador > short.MaxValue * 1000)
+                    throw new Exception("Não conseguimos encontrar o valor");
             } while (Math.Abs(fx) >= Precisao);
             
             return x;
@@ -140,6 +151,8 @@ namespace ARM_comp.Models.PontoZero
             var x2 = X2;
             double x;
             double fx;
+
+            var validador = 0;
             
             do
             {
@@ -152,6 +165,10 @@ namespace ARM_comp.Models.PontoZero
                 x1 = x;
                 
                 fx = _math.F(x1);
+                
+                validador++;
+                if (validador > short.MaxValue * 1000)
+                    throw new Exception("Não conseguimos encontrar o valor");
             } while (Math.Abs(fx) >= Precisao);
             
             return x;
