@@ -23,13 +23,46 @@ Por padrão a precição é de 0.001, mas pode ser alterada colocando um valor.
 
 **Para dois pontos**
 
+**Para exibir a arvore criada para as equações montada**
 
+Suporte para prioridade de parênteses
 
-**Para exibir a arvore montada**
+Funções suportadas:
+
+```
+sen(...)
+cos(...)
+tan(...)
+arcsen(...)
+arccos(...)
+arctan(...)
+ln(...)
+sqrt(...)
+```
 
 Method: POST
 
 `api/funcao-zera`
+
+```
+{
+	"Funcao": "x^2 - x",
+}
+```
+
+```
+{
+	"Funcao": "sen(x + x) + x",
+}
+```
+
+Testando prioridade de operadores
+
+```
+{
+	"Funcao": "x + x * x",
+}
+```
 
 **Calculando usando bissecao**
 
