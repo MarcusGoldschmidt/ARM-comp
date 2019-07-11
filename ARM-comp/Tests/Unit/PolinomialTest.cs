@@ -21,6 +21,11 @@ namespace ARM_comp.Tests.Unit
             new double[] {1},
             new double[] {1, 2}
         )]
+        [TestCase(
+            new double[] {},
+            new double[] {1,2},
+            new double[] {}
+        )]
         public void MultiplicarTest(double[] actualFist, double[] actualSecond, double[] expected)
         {
             var a = new Polinomial(actualFist.ToList());
@@ -49,6 +54,28 @@ namespace ARM_comp.Tests.Unit
             var a = new Polinomial(actualFist.ToList());
             var b = new Polinomial(actualSecond.ToList());
             a.Somar(b);
+            Assert.IsTrue(expected.SequenceEqual(a.Polinomio.Values.ToList()));
+        }
+        
+        [TestCase(
+            new double[] {1, 1},
+            0,
+            new double[] {0, 0}
+        )]
+        [TestCase(
+            new double[] {1, 4, 8},
+            2,
+            new double[] {2, 8, 16}
+        )]
+        [TestCase(
+            new double[] {1},
+            5,
+            new double[] {5}
+        )]
+        public void SomaDeContantesTest(double[] actualFist, double actualSecond, double[] expected)
+        {
+            var a = new Polinomial(actualFist.ToList());
+            a.Multiplicar(actualSecond);
             Assert.IsTrue(expected.SequenceEqual(a.Polinomio.Values.ToList()));
         }
     }
