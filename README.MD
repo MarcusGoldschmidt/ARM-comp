@@ -29,24 +29,7 @@ Method: POST
 }
 ```
 
-Exemplo de estrada
-
-Por padrão a precição é de 0.001, mas pode ser alterada colocando um valor.
-
-**Para um ponto**
-
-```
-{
-	"Funcao": "x^2 - x",
-	"Ponto": {
-		"A": 2,
-		"B": 0
-	},
-	Precisao: 0.000001
-}
-```
-
-**Para dois pontos**
+Pode ser usado para testar os metodos de interpolação
 
 **Para exibir a arvore criada para as equações montada**
 
