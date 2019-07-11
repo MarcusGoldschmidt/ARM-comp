@@ -19,8 +19,6 @@ Por padrão a precição é de 0.001, mas pode ser alterada colocando um valor.
 }
 ```
 
-**Para dois pontos**
-
 **Para exibir a arvore criada para as equações montada**
 
 Suporte para prioridade de parênteses
@@ -79,7 +77,7 @@ Method: POST
 }
 ```
 
-**Calculando usando posição false**
+**Calculando usando posição falsa**
 
 Method: POST
 
