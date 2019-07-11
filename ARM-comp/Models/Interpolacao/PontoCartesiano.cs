@@ -1,4 +1,4 @@
-namespace ARM_comp.Models
+namespace ARM_comp.Models.Interpolacao
 {
     public class PontoCartesiano
     {

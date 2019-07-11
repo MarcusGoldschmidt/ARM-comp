@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace ARM_comp.Models
+namespace ARM_comp.Models.PontoZero
 {
     public class Ponto
     {

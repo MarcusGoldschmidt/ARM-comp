@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ARM_comp.Helpers.NotEval
+namespace ARM_comp.Helpers
 {
     public class Polinomial
     {
