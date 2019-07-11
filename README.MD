@@ -1,5 +1,19 @@
 # Trabalho de metodos computacionais
 
+## Executando o projeto
+
+Por padrão vem na porta 5001
+
+```
+dotnet run
+```
+
+## Testes unitários
+
+```
+dotnet test
+```
+
 ## Bissecção
 
 **Calculando função genérica**
