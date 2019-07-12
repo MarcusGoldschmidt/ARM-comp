@@ -146,7 +146,7 @@ Method: POST
 
 ```
 {
-	Pontos: [
+	"Pontos": [
 		{
 			"x": 0,
 			"y": 5
