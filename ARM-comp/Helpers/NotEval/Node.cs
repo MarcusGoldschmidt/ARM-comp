@@ -25,7 +25,8 @@ namespace ARM_comp.Helpers.NotEval
 
         private string FormataString(string data)
         {
-            return data.Replace(" ", "");
+            var aux = data.Replace(" ", ""); 
+            return aux.Replace("E","*10^");
         }
 
         protected string RemovePareteses(string data)
