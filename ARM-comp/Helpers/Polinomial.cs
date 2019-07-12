@@ -54,9 +54,7 @@ namespace ARM_comp.Helpers
         {
             var newPolinomio = new Dictionary<int, double>();
             foreach (var (key, value) in Polinomio)
-            {
                 newPolinomio.Add(key, value * parans);
-            }
             Polinomio = newPolinomio;
         }
 
