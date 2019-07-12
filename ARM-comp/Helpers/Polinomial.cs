@@ -46,26 +46,8 @@ namespace ARM_comp.Helpers
         
         public void Multiplicar(double[] list)
         {
-            // FIXME Podia fazer melhor mas fiquei com preguiça
             var parans = new Polinomial(list.ToList());
-            
-            var newPolinomio = new Dictionary<int, double>();
-
-            foreach (var data in Polinomio)
-            {
-                foreach (var paransData in parans.Polinomio)
-                {
-                    var potenciaFinal = data.Key + paransData.Key;
-                    if (newPolinomio.ContainsKey(potenciaFinal))
-                        newPolinomio[potenciaFinal] += data.Value * paransData.Value;
-                    else
-                        newPolinomio.Add(
-                            data.Key + paransData.Key,
-                            data.Value * paransData.Value
-                        );
-                }
-            }
-            Polinomio = newPolinomio;
+            Multiplicar(parans);
         }
         
         public void Multiplicar(double parans)
