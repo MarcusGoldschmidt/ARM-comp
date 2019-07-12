@@ -1,5 +1,6 @@
-﻿using ARM_comp.Models.Interpolacao.Metodos;
-using ARM_comp.Models.Metodos;
+﻿using System.Collections.Generic;
+using ARM_comp.Models.Interpolacao;
+using ARM_comp.Models.Interpolacao.Metodos;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -10,16 +11,12 @@ namespace ARM_comp.Controllers
     public class InterpolacaoController : ControllerBase
     {
         [HttpPost("lagrange")]
-        public ActionResult<string> Bissecao([FromBody] LagrangeDto value)
+        public ActionResult<string> Bissecao([FromBody] PontosDto value)
         {
-            
-            var lagrange = new Lagrange(value);
-            
-            var json = new
+            return JsonConvert.SerializeObject(new
             {
-                result = lagrange.Interpolacao()
-            };
-            return JsonConvert.SerializeObject(json);
+                result = new Lagrange(value).Interpolacao()
+            });
         }
     }
 }

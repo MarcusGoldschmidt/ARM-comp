@@ -53,20 +53,16 @@ namespace ARM_comp.Helpers.NotEval
         
         public static bool IsLetterAndNotX(char data)
         {
-            if (data >= 97 && data <= 122 && data != 'x')
-                return true;
-
-            return false;
+            return data >= 97 && data <= 122 && data != 'x';
         }
         
         public static List<char> Ascii()
         {
             var Ascii = new List<char>();
             for (var i = 0; i < 255; i++)
-            {
                 Ascii.Add((char) i);
-            }
-            return Ascii;
+            return Ascii;    
+                
         }
     }
 }

@@ -1,13 +1,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using ARM_comp.Helpers;
-using ARM_comp.Models.Metodos;
 
 namespace ARM_comp.Models.Interpolacao.Metodos
 {
     public class Lagrange
     {
-        public Lagrange(LagrangeDto data)
+        public Lagrange(List<PontoCartesiano> data)
+        {
+            Pontos = data;
+        }
+        
+        public Lagrange(PontosDto data)
         {
             Pontos = data.Pontos;
         }
