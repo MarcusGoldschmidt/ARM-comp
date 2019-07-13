@@ -78,37 +78,33 @@ namespace ARM_comp.Helpers.NotEval
                     var aux = BlocoParenteses(data.Substring(i));
                     tokens.Add(aux);
                     i += aux.Length - 1;
+                    continue;
                 }
-                else
+                
+                if (TokenList.IsDecimal(data[i]))
                 {
-                    if (TokenList.IsDecimal(data[i]))
-                    {
-                        var aux = BlocoDecimal(data.Substring(i));
-                        tokens.Add(aux);
-                        i += aux.Length - 1;
-                    }
-                    else
-                    {
-                        if (TokenList.IsLetterAndNotX(data[i]))
-                        {
-                            var aux = BlocoFuncao(data.Substring(i));
-                            tokens.Add(aux);
-                            i += aux.Length - 1;
-                        }
-                        else
-                        {
-                            // TODO: Verificar quando o valor é negativo
-                            tokens.Add(data[i].ToString());
-                            if (TokenList.IsOperators(data[i].ToString())
-                                && data[i + 1] == '-')
-                            {
-                                var aux = data[++i].ToString();
-                                aux = $"{aux}{BlocoDecimal(data.Substring(i + 1))}";
-                                tokens.Add(aux);
-                                i += aux.Length - 1;
-                            }
-                        }
-                    }
+                    var aux = BlocoDecimal(data.Substring(i));
+                    tokens.Add(aux);
+                    i += aux.Length - 1;
+                    continue;
+                }
+                if (TokenList.IsLetterAndNotX(data[i]))
+                {
+                    var aux = BlocoFuncao(data.Substring(i));
+                    tokens.Add(aux);
+                    i += aux.Length - 1;
+                    continue;
+                }
+                
+                // TODO: Verificar quando o valor é negativo
+                tokens.Add(data[i].ToString());
+                if (TokenList.IsOperators(data[i].ToString())
+                    && data[i + 1] == '-')
+                {
+                    var aux = data[++i].ToString();
+                    aux = $"{aux}{BlocoDecimal(data.Substring(i + 1))}";
+                    tokens.Add(aux);
+                    i += aux.Length - 1;
                 }
             }
 
