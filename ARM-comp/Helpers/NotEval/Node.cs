@@ -67,6 +67,12 @@ namespace ARM_comp.Helpers.NotEval
                     continue;
                 }
 
+                if (data[i] == 'e')
+                {
+                    tokens.Add(data[i].ToString());
+                    continue;
+                }
+
                 if (data[i] == '(')
                 {
                     var aux = BlocoParenteses(data.Substring(i));
@@ -115,7 +121,9 @@ namespace ARM_comp.Helpers.NotEval
 
             // Funcao Trigonometrica
             // Primeira letra do primeiro lexema
-            if (lexemas.Count == 1 && TokenList.IsLetterAndNotX(lexemas[0][0]))
+            if (lexemas.Count == 1 && 
+                TokenList.IsLetterAndNotX(lexemas[0][0]) &&
+                !TokenList.IsConstants(lexemas[0][0].ToString()))
             {
                 var interator = 0;
                 while (TokenList.IsLetterAndNotX(lexemas[0][interator]))
@@ -291,6 +299,8 @@ namespace ARM_comp.Helpers.NotEval
                         return number;
                     case "e":
                         return Math.E;
+                    case "P":
+                        return Math.PI;
                     default:
                         return Convert.ToDouble(Value);
                 }

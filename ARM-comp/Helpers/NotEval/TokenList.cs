@@ -31,19 +31,28 @@ namespace ARM_comp.Helpers.NotEval
             "ln","sqrt"
         };
         
+        private static readonly string[] Constants = {
+            "e", "P"
+        };
+        
+        public static bool IsConstants(string data)
+        {
+            return Constants.Any(variable => variable == data);
+        }
+        
         public static bool IsOperators(string data)
         {
-            return Operators.Any(VARIABLE => VARIABLE == data);
+            return Operators.Any(variable => variable == data);
         }
 
         public static bool IsPrecedenceOperators(string data)
         {
-            return PreferenceOperators.Any(VARIABLE => VARIABLE == data);
+            return PreferenceOperators.Any(variable => variable == data);
         }
 
         public static bool IsSpecialPreferenceOperators(string data)
         {
-            return SpecialPreferenceOperators.Any(VARIABLE => VARIABLE == data);
+            return SpecialPreferenceOperators.Any(variable => variable == data);
         }
 
         public static bool IsDecimal(char data)
@@ -61,8 +70,7 @@ namespace ARM_comp.Helpers.NotEval
             var Ascii = new List<char>();
             for (var i = 0; i < 255; i++)
                 Ascii.Add((char) i);
-            return Ascii;    
-                
+            return Ascii;
         }
     }
 }
