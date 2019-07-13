@@ -5,8 +5,19 @@ namespace ARM_comp.Helpers
 {
     public class Polinomial
     {
+        
         public Polinomial()
         {
+        }
+        public Polinomial(double data)
+        {
+            Polinomio.Add(0, data);
+        }
+        
+        public Polinomial(double grauZero, double grauUm)
+        {
+            Polinomio.Add(0, grauZero);
+            Polinomio.Add(1, grauUm);
         }
         
         public Polinomial(double[] data)
@@ -67,6 +78,23 @@ namespace ARM_comp.Helpers
                 else
                     Polinomio.Add(key, value);
             }
+        }
+
+        public string ImprimirFormatado()
+        {
+            var retorno = "";
+            var potencia = Polinomio.Keys.Reverse().ToList();
+            var valor = Polinomio.Values.Reverse().ToList();
+
+            for (var i = 0; i < valor.Count; i++)
+            {
+                if (i == valor.Count - 1)
+                    retorno += $"({valor[i]}*x^{potencia[i]})";
+                else
+                    retorno += $"({valor[i]}*x^{potencia[i]}) + ";
+            }
+            
+            return retorno;
         }
     }
 }
