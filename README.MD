@@ -29,11 +29,29 @@ Method: POST
 }
 ```
 
-Pode ser usado para testar os metodos de interpolação
+Pode ser usado para testar os metodos de interpolação.
 
 **Para exibir a arvore criada para as equações montada**
 
-Suporte para prioridade de parênteses
+Suporte para prioridade de parênteses.
+
+Notação cientifica suportada:
+
+```
+{
+	"Funcao": "5E-15",
+}
+```
+
+Valor para e = 2.71828182845905
+
+Valor para P = 3.14159265358979
+
+```
+{
+	"Funcao": "e * P",
+}
+```
 
 Funções suportadas:
 
@@ -155,6 +173,31 @@ Method: POST
 			"x": 0,
 			"y": 5
 		},
+	]
+}
+```
+
+**Calculando usando Forma de newton**
+
+Method: POST
+
+`api/interpolacao/newton`
+
+```
+{
+	"Pontos": [
+		{
+			"x": 1,
+			"y": 1
+		},
+		{
+			"x": 2,
+			"y": 7
+		},
+		{
+			"x": 3,
+			"y": 10
+		}
 	]
 }
 ```

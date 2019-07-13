@@ -18,5 +18,14 @@ namespace ARM_comp.Controllers
                 result = new Lagrange(value).Interpolacao()
             });
         }
+        
+        [HttpPost("newton")]
+        public ActionResult<string> newton([FromBody] PontosDto value)
+        {
+            return JsonConvert.SerializeObject(new
+            {
+                result = new FormaNewton(value).Interpolacao()
+            });
+        }
     }
 }
