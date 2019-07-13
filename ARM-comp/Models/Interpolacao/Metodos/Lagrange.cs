@@ -31,20 +31,7 @@ namespace ARM_comp.Models.Interpolacao.Metodos
                 polinomial.Somar(ProdutorioL(i));
             }
 
-            var retorno = "";
-
-            var potencia = polinomial.Polinomio.Keys.Reverse().ToList();
-            var valor = polinomial.Polinomio.Values.Reverse().ToList();
-
-            for (var i = 0; i < valor.Count; i++)
-            {
-                if (i == valor.Count - 1)
-                    retorno += $"({valor[i]}*x^{potencia[i]})";
-                else
-                    retorno += $"({valor[i]}*x^{potencia[i]}) + ";
-            }
-
-            return retorno;
+            return polinomial.ImprimirFormatado();
         }
 
         private Polinomial ProdutorioL(int j)
