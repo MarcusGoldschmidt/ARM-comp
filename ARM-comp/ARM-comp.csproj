@@ -50,6 +50,8 @@
       <EmbeddedResource Remove="Tests\**" />
       <None Remove="Data\tabela_normal.csv" />
       <EmbeddedResource Include="Data\tabela_normal.csv" />
+      <None Remove="Data\tabela_tstudent.csv" />
+      <EmbeddedResource Include="Data\tabela_tstudent.csv" />
     </ItemGroup>
 
     <ItemGroup>
