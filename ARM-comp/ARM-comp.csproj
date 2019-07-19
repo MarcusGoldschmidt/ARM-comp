@@ -48,6 +48,8 @@
 
     <ItemGroup>
       <EmbeddedResource Remove="Tests\**" />
+      <None Remove="Data\tabela_normal.csv" />
+      <EmbeddedResource Include="Data\tabela_normal.csv" />
     </ItemGroup>
 
     <ItemGroup>
