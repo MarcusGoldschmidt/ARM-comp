@@ -18,19 +18,18 @@ namespace ARM_comp.Models.Interpolacao.Metodos
         public List<string> Interpolacao()
         {
             var response = new List<string>();
-            
+
             for (var i = 1; i < Pontos.Count; i++)
             {
                 var anterior = new Polinomial(Pontos[i].x, -1);
-                anterior.Multiplicar(1/Pontos[i].x - Pontos[i-1].x);
-                anterior.Multiplicar(Pontos[i-1].y);
-                
-                var proximo = new Polinomial(-Pontos[i-1].x, 1);
-                proximo.Multiplicar(1/Pontos[i].x - Pontos[i-1].x);
+                anterior.Multiplicar(1 / (Pontos[i].x - Pontos[i - 1].x));
+                anterior.Multiplicar(Pontos[i - 1].y);
+
+                var proximo = new Polinomial(-Pontos[i - 1].x, 1);
+                proximo.Multiplicar(1 / (Pontos[i].x - Pontos[i - 1].x));
                 proximo.Multiplicar(Pontos[i].y);
-                
+
                 anterior.Somar(proximo);
-                
                 response.Add(anterior.ImprimirFormatado());
             }
 
