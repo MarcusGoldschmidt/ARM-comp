@@ -11,6 +11,7 @@ namespace ARM_comp.Helpers.NotEval
             var aux = new Analyzer();
             generate(aux.BlocoGeracao(data));
         }
+
         public string Value { set; get; }
 
         public Node Left { set; get; }

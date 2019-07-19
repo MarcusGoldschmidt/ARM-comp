@@ -18,7 +18,7 @@ namespace ARM_comp.Tests
         {
             Assert.AreEqual(expected, Analyzer.RemovePareteses(actual));
         }
-        
+
         [TestCase("(x+x)+2",
             "(x+x)",
             "+",
@@ -52,11 +52,11 @@ namespace ARM_comp.Tests
             "x",
             "*",
             "-1.5")]
-        public void LexicoTest(string actual,params string[] expected)
+        public void LexicoTest(string actual, params string[] expected)
         {
             Assert.AreEqual(expected.ToList(), Analyzer.Lexico(actual));
         }
-        
+
         [TestCase("(x + x)", "(x + x) + 2")]
         [TestCase("(x + x)", "(x + x)")]
         [TestCase("(x+x)", "(x+x)")]
@@ -71,9 +71,8 @@ namespace ARM_comp.Tests
         {
             Assert.AreEqual(expected, Analyzer.BlocoDecimal(actual));
         }
-        
-        
-            
+
+
         [TestCase("sen(x)",
             "sen(x)")]
         [TestCase("sen(x)+x",
@@ -82,38 +81,38 @@ namespace ARM_comp.Tests
         {
             Assert.AreEqual(expected, Analyzer.BlocoFuncao(actual));
         }
-        
+
         [TestCase(
-            new object[] {"100","+","x", "*", "x"},
-            new object[] {"100", "+","x*x"}
-            )]
-        [TestCase(
-            new object[] {"100","+","x"},
-            new object[] {"100", "+","x"}
+            new object[] {"100", "+", "x", "*", "x"},
+            new object[] {"100", "+", "x*x"}
         )]
         [TestCase(
-            new object[] {"100","+","x", "*", "x", "*","x"},
-            new object[] {"100", "+","x*x*x"}
+            new object[] {"100", "+", "x"},
+            new object[] {"100", "+", "x"}
         )]
         [TestCase(
-            new object[] {"100","*","x", "*", "x"},
-            new object[] {"100*x", "*","x"}
+            new object[] {"100", "+", "x", "*", "x", "*", "x"},
+            new object[] {"100", "+", "x*x*x"}
         )]
         [TestCase(
-            new object[] {"x","*","x", "*", "x"},
-            new object[] {"x*x", "*","x"}
+            new object[] {"100", "*", "x", "*", "x"},
+            new object[] {"100*x", "*", "x"}
         )]
         [TestCase(
-            new object[] {"x","*","x", "*", "x","+","x"},
-            new object[] {"x*x", "*","x+x"}
+            new object[] {"x", "*", "x", "*", "x"},
+            new object[] {"x*x", "*", "x"}
         )]
         [TestCase(
-            new object[] {"x","+","(100+x)", "*", "(10/500)","+","x"},
-            new object[] {"x", "+","(100+x)*(10/500)+x"}
+            new object[] {"x", "*", "x", "*", "x", "+", "x"},
+            new object[] {"x*x", "*", "x+x"}
         )]
         [TestCase(
-            new object[] {"x","+","(100+x)", "*", "(10/500)"},
-            new object[] {"x", "+","(100+x)*(10/500)"}
+            new object[] {"x", "+", "(100+x)", "*", "(10/500)", "+", "x"},
+            new object[] {"x", "+", "(100+x)*(10/500)+x"}
+        )]
+        [TestCase(
+            new object[] {"x", "+", "(100+x)", "*", "(10/500)"},
+            new object[] {"x", "+", "(100+x)*(10/500)"}
         )]
         [TestCase(
             new object[] {"100"},
@@ -123,7 +122,6 @@ namespace ARM_comp.Tests
             new object[] {"x"},
             new object[] {"x"}
         )]
-        
         [TestCase(
             new object[] {"*"},
             new object[] {"*"}
@@ -133,17 +131,17 @@ namespace ARM_comp.Tests
             new object[] {"+"}
         )]
         [TestCase(
-            new object[] {"x","*","x","+","(x+x)"},
-            new object[] {"x*x","+","(x+x)"}
+            new object[] {"x", "*", "x", "+", "(x+x)"},
+            new object[] {"x*x", "+", "(x+x)"}
         )]
         // Precedencia de Potenciação
         [TestCase(
-            new object[] {"x","*","x","^","x"},
-            new object[] {"x","*","x^x"}
+            new object[] {"x", "*", "x", "^", "x"},
+            new object[] {"x", "*", "x^x"}
         )]
         [TestCase(
-            new object[] {"x","+","x","^","x"},
-            new object[] {"x","+","x^x"}
+            new object[] {"x", "+", "x", "^", "x"},
+            new object[] {"x", "+", "x^x"}
         )]
         public void AjustePrioridadeTest(object[] actual, object[] expected)
         {

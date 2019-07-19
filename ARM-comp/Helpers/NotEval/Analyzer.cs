@@ -14,13 +14,13 @@ namespace ARM_comp.Helpers.NotEval
             tokens = AjustePrioridade(tokens);
             return tokens;
         }
-        
+
         public string FormataString(string data)
         {
-            var aux = data.Replace(" ", ""); 
-            return aux.Replace("E","*10^");
+            var aux = data.Replace(" ", "");
+            return aux.Replace("E", "*10^");
         }
-        
+
         public string RemovePareteses(string data)
         {
             if (data[0] != '(') return data;
@@ -43,7 +43,7 @@ namespace ARM_comp.Helpers.NotEval
 
             return data;
         }
-        
+
         public List<string> Lexico(string data)
         {
             var tokens = new List<string>();
@@ -53,7 +53,7 @@ namespace ARM_comp.Helpers.NotEval
                 // Gambiarra
                 if (i == 0 && data[i] == '-')
                 {
-                    var aux = "-"+BlocoDecimal(data.Substring(i+1));
+                    var aux = "-" + BlocoDecimal(data.Substring(i + 1));
                     tokens.Add(aux);
                     i += aux.Length - 1;
                     continue;
@@ -72,7 +72,7 @@ namespace ARM_comp.Helpers.NotEval
                     i += aux.Length - 1;
                     continue;
                 }
-                
+
                 if (TokenList.IsDecimal(data[i]))
                 {
                     var aux = BlocoDecimal(data.Substring(i));
@@ -80,6 +80,7 @@ namespace ARM_comp.Helpers.NotEval
                     i += aux.Length - 1;
                     continue;
                 }
+
                 if (TokenList.IsLetterAndNotX(data[i]))
                 {
                     var aux = BlocoFuncao(data.Substring(i));
@@ -87,7 +88,7 @@ namespace ARM_comp.Helpers.NotEval
                     i += aux.Length - 1;
                     continue;
                 }
-                
+
                 // TODO: Verificar quando o valor é negativo
                 tokens.Add(data[i].ToString());
                 if (TokenList.IsOperators(data[i].ToString())
@@ -102,14 +103,14 @@ namespace ARM_comp.Helpers.NotEval
 
             return tokens;
         }
-        
+
         public List<string> AjustePrioridade(List<string> lexemas)
         {
             var newList = new List<string>();
 
             // Funcao Trigonometrica
             // Primeira letra do primeiro lexema
-            if (lexemas.Count == 1 && 
+            if (lexemas.Count == 1 &&
                 TokenList.IsLetterAndNotX(lexemas[0][0]) &&
                 !TokenList.IsConstants(lexemas[0][0].ToString()))
             {
@@ -179,7 +180,7 @@ namespace ARM_comp.Helpers.NotEval
 
             return newList;
         }
-        
+
         public string BlocoParenteses(string data)
         {
             var block = 0;
@@ -200,7 +201,7 @@ namespace ARM_comp.Helpers.NotEval
 
             return data.Substring(0, block + 1);
         }
-        
+
         public string BlocoDecimal(string data)
         {
             var i = 0;
@@ -215,7 +216,7 @@ namespace ARM_comp.Helpers.NotEval
 
             return data.Substring(0, i);
         }
-        
+
         public void ValidacaoString(string data)
         {
             if (data.Any(e => e == '(' || e == ')'))
@@ -228,7 +229,7 @@ namespace ARM_comp.Helpers.NotEval
                 }
             }
         }
-        
+
         public string BlocoFuncao(string data)
         {
             var aux = 0;
@@ -256,6 +257,5 @@ namespace ARM_comp.Helpers.NotEval
             var let = data.Substring(0, block + 1);
             return let;
         }
-
     }
 }

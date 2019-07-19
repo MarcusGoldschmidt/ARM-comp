@@ -33,7 +33,8 @@ namespace ARM_comp.Helpers
         }
 
         public Dictionary<int, double> Polinomio = new Dictionary<int, double>();
-
+        
+        // TODO: Fazer versão com sobrecarga de operadores
         public void Multiplicar(Polinomial parans)
         {
             var newPolinomio = new Dictionary<int, double>();
