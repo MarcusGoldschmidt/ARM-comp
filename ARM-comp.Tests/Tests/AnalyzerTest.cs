@@ -4,13 +4,9 @@ using NUnit.Framework;
 
 namespace ARM_comp.Tests
 {
-    [TestFixture("x")]
-    public class NodeTest : Node
+    public class AnalyzerTest
     {
-
-        public NodeTest(string data) : base(data)
-        {
-        }
+        private Analyzer Analyzer = new Analyzer();
 
         [TestCase("x + x", "(x + x)")]
         [TestCase("x + (x * x)", "x + (x * x)")]
@@ -20,7 +16,7 @@ namespace ARM_comp.Tests
         [TestCase("x + x", "x + x")]
         public void RemoveParentesesTest(string expected, string actual)
         {
-            Assert.AreEqual(expected, RemovePareteses(actual));
+            Assert.AreEqual(expected, Analyzer.RemovePareteses(actual));
         }
         
         [TestCase("(x+x)+2",
@@ -58,7 +54,7 @@ namespace ARM_comp.Tests
             "-1.5")]
         public void LexicoTest(string actual,params string[] expected)
         {
-            Assert.AreEqual(expected.ToList(), Lexico(actual));
+            Assert.AreEqual(expected.ToList(), Analyzer.Lexico(actual));
         }
         
         [TestCase("(x + x)", "(x + x) + 2")]
@@ -66,14 +62,14 @@ namespace ARM_comp.Tests
         [TestCase("(x+x)", "(x+x)")]
         public void BlocoParentesesTest(string expected, string actual)
         {
-            Assert.AreEqual(expected, BlocoParenteses(actual));
+            Assert.AreEqual(expected, Analyzer.BlocoParenteses(actual));
         }
 
         [TestCase("1000", "1000*(x+x)")]
         [TestCase("1.57", "1.57*(x+x)")]
         public void BlocoDecimalTest(string expected, string actual)
         {
-            Assert.AreEqual(expected, BlocoDecimal(actual));
+            Assert.AreEqual(expected, Analyzer.BlocoDecimal(actual));
         }
         
         
@@ -84,7 +80,7 @@ namespace ARM_comp.Tests
             "sen(x)")]
         public void BlocoFuncaoTest(string actual, string expected)
         {
-            Assert.AreEqual(expected, BlocoFuncao(actual));
+            Assert.AreEqual(expected, Analyzer.BlocoFuncao(actual));
         }
         
         [TestCase(
@@ -152,7 +148,7 @@ namespace ARM_comp.Tests
         public void AjustePrioridadeTest(object[] actual, object[] expected)
         {
             var lista = actual.Select(data => data.ToString()).ToList();
-            Assert.AreEqual(expected.ToList(), AjustePrioridade(lista));
+            Assert.AreEqual(expected.ToList(), Analyzer.AjustePrioridade(lista));
         }
     }
 }
