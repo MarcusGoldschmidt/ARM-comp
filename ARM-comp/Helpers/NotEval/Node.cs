@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace ARM_comp.Helpers.NotEval
 {
@@ -54,7 +53,6 @@ namespace ARM_comp.Helpers.NotEval
                         return Convert.ToDouble(Value);
                 }
             }
-
             // Funcoes normais
             if (Right != null && Left != null)
             {
@@ -75,7 +73,6 @@ namespace ARM_comp.Helpers.NotEval
                         return Math.Pow(Left.Calcular(number), Right.Calcular(number));
                 }
             }
-
             // Funcoes trigonometrica
             if (Right != null)
             {
@@ -101,7 +98,6 @@ namespace ARM_comp.Helpers.NotEval
                         throw new Exception("Função não reconhecida: " + Value);
                 }
             }
-
             return number;
         }
     }

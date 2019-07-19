@@ -27,5 +27,14 @@ namespace ARM_comp.Controllers
                 result = new FormaNewton(value).Interpolacao()
             });
         }
+        
+        [HttpPost("linear")]
+        public ActionResult<string> linear([FromBody] PontosDto value)
+        {
+            return JsonConvert.SerializeObject(new
+            {
+                result = new Linear(value).Interpolacao()
+            });
+        }
     }
 }
