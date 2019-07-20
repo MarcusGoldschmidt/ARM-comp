@@ -23,13 +23,13 @@ namespace ARM_comp.Models.Interpolacao.Metodos
             for (var i = 1; i < m; i++)
             {
                 if (i == m - 1)
-                    aux += $"{CalculaA(i)} * cos({i} * x) + {CalculaB(i)} * sen({i} * x)";
+                    aux += $"({CalculaA(i)} * cos({i} * x)) + ({CalculaB(i)} * sen({i} * x))";
                 else
-                    aux += $"{CalculaA(i)} * cos({i} * x) + {CalculaB(i)} * sen({i} * x) + ";
+                    aux += $"({CalculaA(i)} * cos({i} * x)) + ({CalculaB(i)} * sen({i} * x)) + ";
             }
 
             if (Pontos.Count % 2 == 0)
-                aux += $" + {CalculaA(m)/2} * cos({m}x)";
+                aux += $" + ({CalculaA(m)/2} * cos({m}x))";
             return aux;
         }
 
