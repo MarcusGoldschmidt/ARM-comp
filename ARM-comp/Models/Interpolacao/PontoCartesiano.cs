@@ -11,5 +11,7 @@ namespace ARM_comp.Models.Interpolacao
         public double x { get; set; }
 
         public double y { get; set; }
+        
+        public double xRad { get; set; }
     }
 }

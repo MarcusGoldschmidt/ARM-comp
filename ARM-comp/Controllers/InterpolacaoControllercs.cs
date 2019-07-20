@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using ARM_comp.Models.Interpolacao;
+﻿using ARM_comp.Models.Interpolacao;
 using ARM_comp.Models.Interpolacao.Metodos;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -20,7 +19,7 @@ namespace ARM_comp.Controllers
         }
         
         [HttpPost("newton")]
-        public ActionResult<string> newton([FromBody] PontosDto value)
+        public ActionResult<string> Newton([FromBody] PontosDto value)
         {
             return JsonConvert.SerializeObject(new
             {
@@ -29,11 +28,20 @@ namespace ARM_comp.Controllers
         }
         
         [HttpPost("linear")]
-        public ActionResult<string> linear([FromBody] PontosDto value)
+        public ActionResult<string> Linear([FromBody] PontosDto value)
         {
             return JsonConvert.SerializeObject(new
             {
                 result = new Linear(value).Interpolacao()
+            });
+        }
+        
+        [HttpPost("trignometrica")]
+        public ActionResult<string> Interpolacao([FromBody] PontosDto value)
+        {
+            return JsonConvert.SerializeObject(new
+            {
+                result = new Trignometrica(value).Interpolacao()
             });
         }
     }
