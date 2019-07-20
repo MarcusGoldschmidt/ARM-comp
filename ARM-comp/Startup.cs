@@ -1,5 +1,6 @@
-﻿using System;
-using System.Net;
+﻿using System.Net;
+using ARM_comp.Models.Interfaces;
+using ARM_comp.Models.IntervaloConfianca;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
@@ -24,6 +25,7 @@ namespace ARM_comp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddSingleton<ITabelaIntervaloConfianca, TabelaIntervaloConfianca>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
