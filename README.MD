@@ -201,3 +201,53 @@ Method: POST
 	]
 }
 ```
+
+**Calculando usando Forma Linear**
+
+Method: POST
+
+`api/interpolacao/linear`
+
+```
+{
+	"Pontos": [
+		{
+			"x": 1,
+			"y": 1
+		},
+		{
+			"x": 2,
+			"y": 7
+		},
+		{
+			"x": 3,
+			"y": 10
+		}
+	]
+}
+```
+
+**Calculando usando Forma Trignometrica**
+
+Method: POST
+
+`api/interpolacao/trignometrica`
+
+```
+{
+	"Pontos": [
+		{
+			"x": 1,
+			"y": 1
+		},
+		{
+			"x": 2,
+			"y": 7
+		},
+		{
+			"x": 3,
+			"y": 10
+		}
+	]
+}
+```
