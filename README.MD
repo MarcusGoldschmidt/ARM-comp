@@ -251,3 +251,61 @@ Method: POST
 	]
 }
 ```
+
+## Intervalo de confiança
+
+**Usando tabela normal**
+
+Method: POST
+
+`api/confianca/normal`
+
+```
+{
+	"IntervaloDeConfianca": 95.2,
+	"Media": 1.69,
+	"DesvioPadrao": 5,
+	"QuantidadeElementos": 10
+}
+```
+
+## Coeficiente de Correlação
+
+Todos os metodos usando a mesma estrutura
+
+```
+{
+	"Pontos": [
+		{
+			"x": 1,
+			"y": 1
+		},
+		{
+			"x": 2,
+			"y": 7
+		},
+		{
+			"x": 3,
+			"y": 10
+		}
+	]
+}
+```
+
+**Coeficiente de Correlação de Person**
+
+Method: POST
+
+`api/correlacao/person`
+
+**Coeficiente de Correlação de Spearman**
+
+Method: POST
+
+`api/correlacao/spearman`
+
+**Coeficiente de Correlação de Kendall**
+
+Method: POST
+
+`api/correlacao/kendall`
