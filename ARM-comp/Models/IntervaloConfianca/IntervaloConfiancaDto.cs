@@ -9,5 +9,7 @@ namespace ARM_comp.Models.IntervaloConfianca
         public double DesvioPadrao { get; set; }
         
         public int QuantidadeElementos { get; set; }
+
+        public int GrauLiberdade { get; set; }
     }
 }

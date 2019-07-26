@@ -11,6 +11,8 @@ namespace ARM_comp.Models.IntervaloConfianca
         private static TabelaIntervaloConfianca _tabelaIntervaloConfianca = new TabelaIntervaloConfianca();
 
         private Dictionary<double,double> TabelaNormalData = new Dictionary<double, double>();
+        
+        private Dictionary<double,double> TabelaTSudent = new Dictionary<double, double>();
 
         public TabelaIntervaloConfianca()
         {
@@ -24,7 +26,7 @@ namespace ARM_comp.Models.IntervaloConfianca
                 return TabelaNormalData[porcentagem];
             
             // Calculando o mais proximo
-            var menorTstudent = new Tstudent(TabelaNormalData.AsEnumerable().First(), porcentagem);
+            var menorTstudent = new TNormal(TabelaNormalData.AsEnumerable().First(), porcentagem);
             
             foreach (var (key, value) in TabelaNormalData.AsEnumerable())
             {
@@ -46,6 +48,7 @@ namespace ARM_comp.Models.IntervaloConfianca
             throw new NotImplementedException();
         }
 
+        
         private void ComputaTabelaNormal()
         {
             var tabelaNormalData = new Dictionary<double, List<Tuple<double, double>>>();
@@ -78,6 +81,8 @@ namespace ARM_comp.Models.IntervaloConfianca
 
         private void ComputaTabelaTStudent()
         {
+            // Le os valores
+            var matriz = AbreCsv("tabela_normal.csv");
         }
 
         private List<List<double>> AbreCsv(string fileName)

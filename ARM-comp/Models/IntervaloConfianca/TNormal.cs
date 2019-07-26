@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ARM_comp.Models.IntervaloConfianca
 {
-    public class Tstudent
+    public class TNormal
     {
         public double Value { get; set; }
 
@@ -11,7 +11,7 @@ namespace ARM_comp.Models.IntervaloConfianca
 
         public double Diferenca { get; set; }
 
-        public Tstudent(KeyValuePair<double, double> data, double porcentagem)
+        public TNormal(KeyValuePair<double, double> data, double porcentagem)
         {
             Key = data.Key;
             Value = data.Value;

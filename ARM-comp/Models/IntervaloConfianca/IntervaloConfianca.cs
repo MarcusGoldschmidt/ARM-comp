@@ -7,6 +7,11 @@ namespace ARM_comp.Models.IntervaloConfianca
 {
     public class IntervaloConfianca
     {
+        public IntervaloConfianca(ITabelaIntervaloConfianca tabelaIntervaloConfianca)
+        {
+            _tabelaIntervaloConfianca = tabelaIntervaloConfianca;
+        }
+
         public IntervaloConfianca(ITabelaIntervaloConfianca table, IntervaloConfiancaDto data)
         {
             if (data.IntervaloDeConfianca < 0 && data.IntervaloDeConfianca > 100)
