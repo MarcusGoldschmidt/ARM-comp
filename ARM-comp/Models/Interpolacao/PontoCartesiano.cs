@@ -7,11 +7,11 @@ namespace ARM_comp.Models.Interpolacao
             this.x = x;
             this.y = y;
         }
-        
+
         public double x { get; set; }
 
         public double y { get; set; }
-        
+
         public double xRad { get; set; }
     }
 }
