@@ -10,20 +10,35 @@ namespace ARM_comp.Models.IntervaloConfianca
     {
         private static TabelaIntervaloConfianca _tabelaIntervaloConfianca = new TabelaIntervaloConfianca();
 
-        public static TabelaIntervaloConfianca GetInstance() => _tabelaIntervaloConfianca;
+        private Dictionary<double,double> TabelaNormalData = new Dictionary<double, double>();
 
         public TabelaIntervaloConfianca()
         {
             ComputaTabelaNormal();
             ComputaTabelaTStudent();
         }
-
-        private Dictionary<double, List<Tuple<double, double>>> TabelaNormalData =
-            new Dictionary<double, List<Tuple<double, double>>>();
-
-        public double TabelaNormal(double valor)
+        public double TabelaNormal(double porcentagem)
         {
-            return 1;
+            porcentagem /= 2;
+            if (TabelaNormalData.ContainsKey(porcentagem))
+                return TabelaNormalData[porcentagem];
+            
+            // Calculando o mais proximo
+            var menorTstudent = new Tstudent(TabelaNormalData.AsEnumerable().First(), porcentagem);
+            
+            foreach (var (key, value) in TabelaNormalData.AsEnumerable())
+            {
+                var testeMenor = Math.Abs(key - porcentagem);
+
+                if (testeMenor < menorTstudent.Diferenca)
+                {
+                    menorTstudent.Diferenca = testeMenor;
+                    menorTstudent.Key = key;
+                    menorTstudent.Value = value;
+                }
+            }
+
+            return menorTstudent.Value;
         }
 
         public double TabelaTStudent(int grauLiberdade, double segundoValor)
@@ -33,22 +48,31 @@ namespace ARM_comp.Models.IntervaloConfianca
 
         private void ComputaTabelaNormal()
         {
+            var tabelaNormalData = new Dictionary<double, List<Tuple<double, double>>>();
+            
+            // Le os valores
             var matriz = AbreCsv("tabela_normal.csv");
             for (var i = 1; i < matriz.Count - 1; i++)
             {
                 for (var j = 1; j < matriz[i].Count -1; j++)
                 {
-                    if (TabelaNormalData.ContainsKey(matriz[i][j]))
+                    if (tabelaNormalData.ContainsKey(matriz[i][j]))
                     {
-                        TabelaNormalData[matriz[i][j]].Add(new Tuple<double, double>(matriz[0][j], matriz[i][0]));
+                        tabelaNormalData[matriz[i][j]].Add(new Tuple<double, double>(matriz[0][j], matriz[i][0]));
                     }
                     else
                     {
                         var lista = new List<Tuple<double, double>>();
                         lista.Add(new Tuple<double, double>(matriz[0][j], matriz[i][0]));
-                        TabelaNormalData.Add(matriz[i][j], lista);
+                        tabelaNormalData.Add(matriz[i][j], lista);
                     }
                 }
+            }
+            
+            foreach (var (key, value) in tabelaNormalData.AsEnumerable())
+            {
+                var media = value.Sum(e => e.Item1 + e.Item2) / value.Count;
+                TabelaNormalData.Add(key, media);
             }
         }
 

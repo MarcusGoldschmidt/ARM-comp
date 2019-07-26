@@ -19,10 +19,8 @@ namespace ARM_comp.Controllers
         [HttpPost("normal")]
         public ActionResult<string> Bissecao([FromBody] IntervaloConfiancaDto value)
         {
-            return JsonConvert.SerializeObject(new
-            {
-                result = new IntervaloConfianca(_tabelaIntervaloConfianca)
-            });
+            var confianca = new IntervaloConfianca(_tabelaIntervaloConfianca, value);
+            return JsonConvert.SerializeObject(confianca.DesvioPadraoConhecido());
         }
     }
 }
