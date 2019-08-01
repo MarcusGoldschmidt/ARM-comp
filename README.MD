@@ -35,7 +35,7 @@ Pode ser usado para testar os metodos de interpolação.
 
 Method: POST
 
-`api/zero-funcao`
+`api/funcao-zera`
 
 ```
 {
