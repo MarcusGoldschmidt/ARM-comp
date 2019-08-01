@@ -33,6 +33,16 @@ Pode ser usado para testar os metodos de interpolação.
 
 **Para exibir a arvore criada para as equações montada**
 
+Method: POST
+
+`api/zero-funcao`
+
+```
+{
+	"Funcao": "e * P",
+}
+```
+
 Suporte para prioridade de parênteses.
 
 Notação cientifica suportada:
@@ -46,12 +56,6 @@ Notação cientifica suportada:
 Valor para e = 2.71828182845905
 
 Valor para P = 3.14159265358979
-
-```
-{
-	"Funcao": "e * P",
-}
-```
 
 Funções suportadas:
 
