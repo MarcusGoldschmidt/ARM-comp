@@ -141,7 +141,7 @@ namespace ARM_comp.Helpers.NotEval
             }
 
             // TODO: Essa parte tem que arrumar para cada novo operador de prioridade maior tem que
-            // Colocar um for aumentado com o if da confição
+            // Colocar um for aumentado com o if da condição
             // Então fixme
 
             // Procura prioridade

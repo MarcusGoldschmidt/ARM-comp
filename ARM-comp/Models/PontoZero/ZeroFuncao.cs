@@ -1,6 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
-using ARM_comp.Helpers.NotEval;
+using ARM_comp.Helpers;
 
 namespace ARM_comp.Models.PontoZero
 {
@@ -19,22 +19,20 @@ namespace ARM_comp.Models.PontoZero
         }
         
         [Required]
-        public string Funcao { set; get; }
+        public string Funcao { get; }
         
-        public string DerivadaFuncao { set; get; }
+        public string DerivadaFuncao { get; }
         
-        public double X { set; get; }
+        public double X { get; }
         
-        public double X2 { set; get; }
+        public double X2 { get; }
         
-        public double Precisao { set; get; }
+        public double Precisao { get; }
 
         [Required]
-        public Ponto Ponto { set; get; }
-        
-        public Ponto Ponto2 { set; get; }
+        public Ponto Ponto { get; }
 
-        private MathExpression _math { set; get; }
+        private MathExpression _math { get; }
 
         private bool ZeroNoIntervalo(Ponto date)
         {

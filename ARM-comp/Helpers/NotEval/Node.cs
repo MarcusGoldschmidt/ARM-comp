@@ -7,8 +7,7 @@ namespace ARM_comp.Helpers.NotEval
     {
         public Node(string data)
         {
-            var aux = new Analyzer();
-            generate(aux.BlocoGeracao(data));
+            generate(new Analyzer().BlocoGeracao(data));
         }
 
         public string Value { set; get; }

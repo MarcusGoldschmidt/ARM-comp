@@ -61,7 +61,7 @@ namespace ARM_comp.Helpers.Singleton
                     row = i;
                 }
             }
-            menorGrau = Math.Abs(grauLiberdade - TabelaTSudentRow[0]);
+            menorGrau = Math.Abs(porcentagem - TabelaTSudentRow[0]);
             var collum = 0;
             for (var i = 0; i < TabelaTSudentRow.Count - 1; i++)
             {

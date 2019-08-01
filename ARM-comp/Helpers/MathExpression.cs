@@ -1,19 +1,19 @@
-using System;
+using ARM_comp.Helpers.NotEval;
 
-namespace ARM_comp.Helpers.NotEval
+namespace ARM_comp.Helpers
 {
     public class MathExpression
     {
         public MathExpression(string data)
         {
-            _node = new Node(data);
+            Node = new Node(data);
         }
 
-        private Node _node { set; get; }
+        private Node Node { get; }
 
         public double F(double x)
         {
-            return _node.Calcular(x);
+            return Node.Calcular(x);
         }
     }
 }

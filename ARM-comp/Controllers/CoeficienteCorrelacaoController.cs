@@ -36,6 +36,5 @@ namespace ARM_comp.Controllers
                 result = new CoeficienteCorrelacao(value).CorrelacaoKendall()
             });
         }
-        
     }
 }

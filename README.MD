@@ -284,6 +284,8 @@ Method: POST
 }
 ```
 
+**Usando proporcão populacional**
+
 Method: POST
 
 `api/proporcao/populacional`

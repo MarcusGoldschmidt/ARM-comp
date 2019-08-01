@@ -56,7 +56,7 @@ namespace ARM_comp.Helpers
             Polinomio = newPolinomio;
         }
         
-        public void Multiplicar(double[] list)
+        public void Multiplicar(IEnumerable<double> list)
         {
             var parans = new Polinomial(list.ToList());
             Multiplicar(parans);
