@@ -39,7 +39,7 @@ Method: POST
 
 ```
 {
-	"Funcao": "e * P",
+	"Funcao": "x^2 - x * P"
 }
 ```
 
