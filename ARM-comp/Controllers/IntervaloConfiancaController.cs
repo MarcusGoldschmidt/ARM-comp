@@ -1,4 +1,4 @@
-using ARM_comp.Models.Interfaces;
+using ARM_comp.Interfaces;
 using ARM_comp.Models.IntervaloConfianca;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -17,10 +17,24 @@ namespace ARM_comp.Controllers
         }
 
         [HttpPost("normal")]
-        public ActionResult<string> Bissecao([FromBody] IntervaloConfiancaDto value)
+        public ActionResult<string> Normal([FromBody] IntervaloConfiancaDto value)
         {
             var confianca = new IntervaloConfianca(_tabelaIntervaloConfianca, value);
             return JsonConvert.SerializeObject(confianca.DesvioPadraoConhecido());
+        }
+        
+        [HttpPost("tstudent")]
+        public ActionResult<string> TStudent([FromBody] IntervaloConfiancaDto value)
+        {
+            var confianca = new IntervaloConfianca(_tabelaIntervaloConfianca, value);
+            return JsonConvert.SerializeObject(confianca.DesvioPadraoDesconhecido());
+        }
+        
+        [HttpPost("proporcao/populacional")]
+        public ActionResult<string> ProporcaoPopulacional([FromBody] IntervaloConfiancaDto value)
+        {
+            var confianca = new IntervaloConfiancaPopulacional(_tabelaIntervaloConfianca, value);
+            return JsonConvert.SerializeObject(confianca.ProporcaoPopulacional());
         }
     }
 }

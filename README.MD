@@ -269,6 +269,34 @@ Method: POST
 }
 ```
 
+**Usando tabela tstudent**
+
+Method: POST
+
+`api/confianca/tstudent`
+
+```
+{
+	"IntervaloDeConfianca": 95.2,
+	"Media": 1.69,
+	"DesvioPadrao": 5,
+	"QuantidadeElementos": 10
+}
+```
+
+Method: POST
+
+`api/proporcao/populacional`
+
+```
+{
+	"IntervaloDeConfianca": 95.2,
+	"DesvioPadrao": 5,
+	"QuantidadeElementos": 10,
+	"CasosDeSucesso": 5
+}
+```
+
 ## Coeficiente de Correlação
 
 Todos os metodos usando a mesma estrutura

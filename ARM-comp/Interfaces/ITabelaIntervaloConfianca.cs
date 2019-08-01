@@ -1,9 +1,9 @@
-namespace ARM_comp.Models.Interfaces
+namespace ARM_comp.Interfaces
 {
     public interface ITabelaIntervaloConfianca
     {
         double TabelaNormal(double valor);
 
-        double TabelaTStudent(int grauLiberdade, double segundoValor);
+        double TabelaTStudent(double grauLiberdade, double porcentagem);
     }
 }

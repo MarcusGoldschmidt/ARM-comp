@@ -10,6 +10,6 @@ namespace ARM_comp.Models.IntervaloConfianca
         
         public int QuantidadeElementos { get; set; }
 
-        public int GrauLiberdade { get; set; }
+        public int CasosDeSucesso { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Net;
-using ARM_comp.Models.Interfaces;
-using ARM_comp.Models.IntervaloConfianca;
+using ARM_comp.Helpers.Singleton;
+using ARM_comp.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;

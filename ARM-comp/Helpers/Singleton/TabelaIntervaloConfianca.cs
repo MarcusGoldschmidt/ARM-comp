@@ -2,23 +2,27 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using ARM_comp.Models.Interfaces;
+using ARM_comp.Interfaces;
+using ARM_comp.Models.IntervaloConfianca;
 
-namespace ARM_comp.Models.IntervaloConfianca
+namespace ARM_comp.Helpers.Singleton
 {
     public class TabelaIntervaloConfianca : ITabelaIntervaloConfianca
     {
-        private static TabelaIntervaloConfianca _tabelaIntervaloConfianca = new TabelaIntervaloConfianca();
-
-        private Dictionary<double,double> TabelaNormalData = new Dictionary<double, double>();
+        private Dictionary<double, double> TabelaNormalData = new Dictionary<double, double>();
         
-        private Dictionary<double,double> TabelaTSudent = new Dictionary<double, double>();
+        private List<List<double>> TabelaTStundent { set; get; }
+        
+        private List<double> TabelaTSudentRow { set; get; }
+        
+        private List<double> TabelaTSudentCollum { set; get; }
 
         public TabelaIntervaloConfianca()
         {
             ComputaTabelaNormal();
             ComputaTabelaTStudent();
         }
+        
         public double TabelaNormal(double porcentagem)
         {
             porcentagem /= 2;
@@ -27,11 +31,12 @@ namespace ARM_comp.Models.IntervaloConfianca
             
             // Calculando o mais proximo
             var menorTstudent = new TNormal(TabelaNormalData.AsEnumerable().First(), porcentagem);
-            
+
             foreach (var (key, value) in TabelaNormalData.AsEnumerable())
             {
                 var testeMenor = Math.Abs(key - porcentagem);
-
+                
+                // Compliquei aqui....
                 if (testeMenor < menorTstudent.Diferenca)
                 {
                     menorTstudent.Diferenca = testeMenor;
@@ -42,10 +47,32 @@ namespace ARM_comp.Models.IntervaloConfianca
 
             return menorTstudent.Value;
         }
-
-        public double TabelaTStudent(int grauLiberdade, double segundoValor)
+        
+        public double TabelaTStudent(double grauLiberdade, double porcentagem)
         {
-            throw new NotImplementedException();
+            var menorGrau = Math.Abs(grauLiberdade - TabelaTSudentCollum[0]);
+            var row = 0;
+            for (var i = 0; i < TabelaTSudentCollum.Count - 1; i++)
+            {
+                var aux = Math.Abs(grauLiberdade - TabelaTSudentCollum[i]);
+                if (aux < menorGrau)
+                {
+                    menorGrau = aux;
+                    row = i;
+                }
+            }
+            menorGrau = Math.Abs(grauLiberdade - TabelaTSudentRow[0]);
+            var collum = 0;
+            for (var i = 0; i < TabelaTSudentRow.Count - 1; i++)
+            {
+                var aux = Math.Abs(grauLiberdade - TabelaTSudentRow[i]);
+                if (aux < menorGrau)
+                {
+                    menorGrau = aux;
+                    collum = i;
+                }
+            }
+            return TabelaTStundent[row][collum];
         }
 
         
@@ -82,7 +109,21 @@ namespace ARM_comp.Models.IntervaloConfianca
         private void ComputaTabelaTStudent()
         {
             // Le os valores
-            var matriz = AbreCsv("tabela_normal.csv");
+            TabelaTStundent = AbreCsv("tabela_tstudent.csv");
+            
+            // Primeira Linha
+            TabelaTSudentRow = TabelaTStundent[0];
+            
+            // Primeira coluna
+            TabelaTSudentCollum = TabelaTStundent.Select(e => e[0]).ToList();
+            TabelaTSudentCollum.RemoveAt(0);
+            
+            // Removendo primeira linha
+            TabelaTStundent.RemoveAt(0);
+            // Removendo primeiro item de cada lista
+            
+            // Removendo primeiro valro que era da coluna
+            TabelaTStundent.ForEach(e => e.RemoveAt(0));
         }
 
         private List<List<double>> AbreCsv(string fileName)
