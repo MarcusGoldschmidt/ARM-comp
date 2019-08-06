@@ -11,7 +11,7 @@ namespace ARM_comp.Controllers
     public class CoeficienteCorrelacaoController : ControllerBase
     {
         [HttpPost("person")]
-        public ActionResult<string> Pesron([FromBody] List<PontoCartesiano> value)
+        public ActionResult<string> Pesron([FromBody] PontosDto value)
         {
             return JsonConvert.SerializeObject(new
             {
@@ -20,7 +20,7 @@ namespace ARM_comp.Controllers
         }
         
         [HttpPost("spearman")]
-        public ActionResult<string> Spearman([FromBody] List<PontoCartesiano> value)
+        public ActionResult<string> Spearman([FromBody] PontosDto value)
         {
             return JsonConvert.SerializeObject(new
             {
@@ -29,7 +29,7 @@ namespace ARM_comp.Controllers
         }
         
         [HttpPost("kendall")]
-        public ActionResult<string> Kendall([FromBody] List<PontoCartesiano> value)
+        public ActionResult<string> Kendall([FromBody] PontosDto value)
         {
             return JsonConvert.SerializeObject(new
             {

@@ -58,4 +58,8 @@
       <Content Remove="Tests\**" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Models\Regressao" />
+    </ItemGroup>
+
 </Project>

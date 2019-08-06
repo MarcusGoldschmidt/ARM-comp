@@ -8,14 +8,14 @@ namespace ARM_comp.Models.Correlacao
 {
     public class CoeficienteCorrelacao
     {
-        public CoeficienteCorrelacao(List<PontoCartesiano> data)
+        public CoeficienteCorrelacao(PontosDto data)
         {
-            if (data == null || data.Count == 0)
+            if (data == null || data.Pontos.Count == 0)
                 throw new InvalidDataException();
             
-            Pontos = data;
-            MediaX = data.Sum(e => e.x) / data.Count;
-            MediaY = data.Sum(e => e.x) / data.Count;
+            Pontos = data.Pontos;
+            MediaX = data.Pontos.Sum(e => e.x) / data.Pontos.Count;
+            MediaY = data.Pontos.Sum(e => e.x) / data.Pontos.Count;
         }
 
         public double CorrelacaoPerson()
@@ -28,7 +28,30 @@ namespace ARM_comp.Models.Correlacao
         
         public double CorrelacaoSperman()
         {
-            return 1 - 6 * Pontos.Sum(e => Math.Pow(e.x - e.y,2)) / (Pontos.Count * (Math.Pow(Pontos.Count, 2) - 1));
+            // Ordenando dados
+            Pontos.Sort(delegate(PontoCartesiano obj1, PontoCartesiano obj2)
+            {
+                if (obj1.x == obj2.x)
+                    return 0;
+                if (obj1.x > obj2.x)
+                    return 1;
+                return -1;
+            });
+            for (var i = 0; i < Pontos.Count; i++)
+                Pontos[i].postoX = i+1;
+            
+            Pontos.Sort(delegate(PontoCartesiano obj1, PontoCartesiano obj2)
+            {
+                if (obj1.y == obj2.y)
+                    return 0;
+                if (obj1.y > obj2.y)
+                    return 1;
+                return -1;
+            });
+            for (var i = 0; i < Pontos.Count; i++)
+                Pontos[i].postoY = i+1;
+            
+            return 1 - 6 * Pontos.Sum(e => Math.Pow(e.postoX - e.postoY, 2)) / (Pontos.Count * (Math.Pow(Pontos.Count, 2) - 1));
         }
         
         public double CorrelacaoKendall()
@@ -36,9 +59,9 @@ namespace ARM_comp.Models.Correlacao
             var concordantes = 0;
             var discordantes = 0;
 
-            for (var i = 0; i < Pontos.Count - 1; i++)
+            for (var i = 0; i < Pontos.Count; i++)
             {
-                for (var j = i + 1; j < Pontos.Count - 1; j++)
+                for (var j = i + 1; j < Pontos.Count; j++)
                 {
                     if (Pontos[i].x > Pontos[j].x && Pontos[i].y > Pontos[j].y)
                         concordantes++;
